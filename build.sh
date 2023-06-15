@@ -2,6 +2,8 @@
 
 KERNEL_VERSION="6.1.34"
 KERNEL_FOLDER="v6.x"
+TYPE="allnoconfig"
+ARCH="arm"
 LOCAL_FOLDER="linux-${KERNEL_VERSION}"
 LOCAL_FILE="${LOCAL_FOLDER}.tar.xz"
 IMAGE="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_FOLDER}/${LOCAL_FILE}"
@@ -28,6 +30,6 @@ then
 	exit 1
 fi
 
-cp "../kernel_config.${KERNEL_VERSION}" "${LOCAL_FOLDER}/.config"
+cp "../kernel_config.${ARCH}.${KERNEL_VERSION}.${TYPE}" "${LOCAL_FOLDER}/.config"
 cd "${LOCAL_FOLDER}"
-make -j 2
+make ARCH="${ARCH}" CROSS_COMPILE=arm-linux-gnueabi-
