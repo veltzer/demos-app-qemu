@@ -18,3 +18,6 @@ if [ ! -d "${LOCAL_FOLDER}" ]
 then
 	tar xvf "${LOCAL_FILE}"
 fi
+cp ../kernel_config "${LOCAL_FOLDER}/.config"
+cd "${LOCAL_FOLDER}"
+make
