@@ -5,7 +5,7 @@ KERNEL_FOLDER="v6.x"
 LOCAL_FOLDER="linux-${KERNEL_VERSION}"
 LOCAL_FILE="${LOCAL_FOLDER}.tar.xz"
 IMAGE="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_FOLDER}/${LOCAL_FILE}"
-STOP_AFTER_TAR=1
+STOP_AFTER_TAR=0
 
 if [ ! -d build ]
 then
@@ -28,6 +28,6 @@ then
 	exit 1
 fi
 
-cp "../kernel_config${KERNEL_VERSION}" "${LOCAL_FOLDER}/.config"
+cp "../kernel_config.${KERNEL_VERSION}" "${LOCAL_FOLDER}/.config"
 cd "${LOCAL_FOLDER}"
 make -j 2
