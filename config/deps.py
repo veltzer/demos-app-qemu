@@ -6,4 +6,6 @@ packages = [
     "shellcheck",
     "libncurses5-dev",
     "gcc-arm-linux-gnueabi",
+    "qemu-system-arm",
+    "busybox",
 ]
