@@ -7,7 +7,6 @@ KERNEL_ARCH="arm"
 KERNEL_FOLDER="linux-${KERNEL_VERSION}"
 KERNEL_FILE="${KERNEL_FOLDER}.tar.xz"
 KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_FOLDER}/${KERNEL_FILE}"
-STOP_AFTER_TAR="0"
 
 BUSYBOX_VERSION="1.36.1"
 BUSYBOX_FOLDER="busybox-${BUSYBOX_VERSION}"
@@ -27,12 +26,6 @@ fi
 if [ ! -d "${KERNEL_FOLDER}" ]
 then
 	tar xvf "${KERNEL_FILE}"
-fi
-
-if [ "${STOP_AFTER_TAR}" = "1" ]
-then
-	echo "stopping because of flag"
-	exit 1
 fi
 
 cd "${KERNEL_FOLDER}"
