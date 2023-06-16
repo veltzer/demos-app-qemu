@@ -53,3 +53,12 @@ if [ ! -d "${BUSYBOX_FOLDER}" ]
 then
 	tar xvf "${BUSYBOX_FILE}"
 fi
+cd "${BUSYBOX_FOLDER}"
+if [ ! -f "stamp" ]
+then
+	make defconfig
+	make CROSS_COMPILE=arm-linux-gnueabi-
+	make install CROSS_COMPILE=arm-linux-gnueabi-
+	touch stamp
+fi
+cd ..
