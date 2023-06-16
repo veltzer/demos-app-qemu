@@ -30,6 +30,10 @@ then
 	exit 1
 fi
 
-cp "../kernel_config.${ARCH}.${KERNEL_VERSION}.${TYPE}" "${LOCAL_FOLDER}/.config"
 cd "${LOCAL_FOLDER}"
-make ARCH="${ARCH}" CROSS_COMPILE=arm-linux-gnueabi-
+if [ ! -f "stamp" ]
+then
+	cp "../../kernel_config.${ARCH}.${KERNEL_VERSION}.${TYPE}" ".config"
+	make ARCH="${ARCH}" CROSS_COMPILE=arm-linux-gnueabi-
+	touch stamp
+fi
