@@ -1,20 +1,6 @@
 #!/bin/bash -e
 
-ARCH="arm"
-CROSS_COMPILE="arm-linux-gnueabi-"
-
-KERNEL_VERSION="6.1.34"
-KERNEL_FOLDER="v6.x"
-KERNEL_TYPE="allnoconfig"
-KERNEL_FOLDER="linux-${KERNEL_VERSION}"
-KERNEL_FILE="${KERNEL_FOLDER}.tar.xz"
-KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_FOLDER}/${KERNEL_FILE}"
-
-BUSYBOX_VERSION="1.36.1"
-BUSYBOX_FOLDER="busybox-${BUSYBOX_VERSION}"
-BUSYBOX_FILE="${BUSYBOX_FOLDER}.tar.bz2"
-BUSYBOX_DOWNLOAD="https://busybox.net/downloads/${BUSYBOX_FILE}"
-BUSYBOX_TYPE="defconfig"
+source defs.sh
 
 if [ ! -d build ]
 then
@@ -58,5 +44,12 @@ then
 	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
 	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	touch stamp
+fi
+if [ ! -f "${ROOTFS}" ]
+then
+	cd _install
+	mkdir -p etc/init.d
+	cp ../../../rcS etc/init.d
+	find . | cpio -o --format=newc > "../${ROOTFS}"
 fi
 cd ..
