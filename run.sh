@@ -10,9 +10,11 @@ qemu-system-arm\
 	-kernel "${KERNEL_IMAGE}"\
 	-initrd "${ROOTFS_FULL_PATH}"\
 	-machine virt
+#	-nographic
+#	-monitor stdio\
+#	-D log.txt
 #	-m 256\
 #	-M virt\
 #	-append "console=ttyAMA0 root=/dev/ram rdinit=/sbin/init"
-#	-nographic\
 ##	-monitor\
 # -virtfs local,path=<host_path_to_share>,security_model=passthrough,mount_tag=host_share

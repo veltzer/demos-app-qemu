@@ -48,7 +48,7 @@ fi
 if [ ! -f "${ROOTFS}" ]
 then
 	cd _install
-	mkdir -p etc/init.d
+	mkdir -p etc/init.d proc sys dev
 	cp ../../../rcS etc/init.d
 	find . | cpio -o --format=newc > "../${ROOTFS}"
 fi
