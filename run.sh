@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 source defs.sh
 
@@ -8,10 +8,10 @@ source defs.sh
 # to see the list of all supported machines
 qemu-system-${ARCH}\
 	-kernel "${KERNEL_IMAGE}"\
-	-initrd "${ROOTFS_FULL_PATH}"\
+	-initrd "${INITRD_FULL_PATH}"\
 	-machine "${QEMU_MACHINE_TYPE}"
-#	-machine virt
 #	-nographic
+#	-machine virt
 #	-monitor stdio\
 #	-D log.txt
 #	-m 256\

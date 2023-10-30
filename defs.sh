@@ -2,7 +2,6 @@ ARCH="arm"
 ARCH="x86_64"
 #CROSS_COMPILE="arm-linux-gnueabi-"
 CROSS_COMPILE="arm-linux-gnueabihf-"
-ROOTFS="rootfs.img"
 
 KERNEL_VERSION="6.1.34"
 KERNEL_DOWNLOAD_FOLDER="v6.x"
@@ -22,7 +21,8 @@ BUSYBOX_FILE="${BUSYBOX_FOLDER}.tar.bz2"
 BUSYBOX_DOWNLOAD="https://busybox.net/downloads/${BUSYBOX_FILE}"
 BUSYBOX_TYPE="defconfig"
 
-ROOTFS_FULL_PATH="build/${BUSYBOX_FOLDER}/${ROOTFS}"
+INITRD="initrd.cpio.gz"
+INITRD_FULL_PATH="build/${BUSYBOX_FOLDER}/${INITRD}"
 
 # $ qemu-system-${ARCH} -machine help
 # to see all machine types

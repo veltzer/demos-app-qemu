@@ -64,11 +64,12 @@ then
 	fi
 	touch stamp
 fi
-if [ ! -f "${ROOTFS}" ]
+if [ ! -f "${INITRD}" ]
 then
 	cd _install
 	mkdir -p etc/init.d proc sys dev
 	cp ../../../rcS etc/init.d
-	find . | cpio -o --format=newc > "../${ROOTFS}"
+	find . -print0 | cpio --null --create --format=newc | gzip -9 > "../${INITRD}"
+
 fi
 cd ..

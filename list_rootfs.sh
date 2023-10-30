@@ -2,4 +2,4 @@
 
 source defs.sh
 
-cat "${ROOTFS_FULL_PATH}" | cpio --list
+cat "${INITRD_FULL_PATH}" | cpio --list
