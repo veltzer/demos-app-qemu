@@ -11,7 +11,7 @@ KERNEL_FOLDER="linux-${KERNEL_VERSION}"
 KERNEL_FILE="${KERNEL_FOLDER}.tar.xz"
 KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_DOWNLOAD_FOLDER}/${KERNEL_FILE}"
 # x86
-KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/x86_64/boot/bzImage"
+KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/x86/boot/bzImage"
 # ARM
 # KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/arm/boot/zImage"
 KERNEL_BUILD_FLAGS="-j4"

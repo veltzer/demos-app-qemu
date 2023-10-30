@@ -6,10 +6,11 @@ source defs.sh
 # use:
 # $ qemu-system-arm -machine help
 # to see the list of all supported machines
-qemu-system-arm\
+qemu-system-${ARCH}\
 	-kernel "${KERNEL_IMAGE}"\
 	-initrd "${ROOTFS_FULL_PATH}"\
-	-machine virt
+	-machine q35
+#	-machine virt
 #	-nographic
 #	-monitor stdio\
 #	-D log.txt
