@@ -9,7 +9,7 @@ source defs.sh
 qemu-system-${ARCH}\
 	-kernel "${KERNEL_IMAGE}"\
 	-initrd "${ROOTFS_FULL_PATH}"\
-	-machine q35
+	-machine "${QEMU_MACHINE_TYPE}"
 #	-machine virt
 #	-nographic
 #	-monitor stdio\

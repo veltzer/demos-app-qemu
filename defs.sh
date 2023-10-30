@@ -23,3 +23,9 @@ BUSYBOX_DOWNLOAD="https://busybox.net/downloads/${BUSYBOX_FILE}"
 BUSYBOX_TYPE="defconfig"
 
 ROOTFS_FULL_PATH="build/${BUSYBOX_FOLDER}/${ROOTFS}"
+
+# $ qemu-system-${ARCH} -machine help
+# to see all machine types
+QEMU_MACHINE_TYPE="q35" # x86_64 type machine
+# QEMU_MACHINE_TYPE="virt" # arm type machine
+
