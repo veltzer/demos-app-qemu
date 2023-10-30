@@ -6,7 +6,7 @@ ROOTFS="rootfs.img"
 
 KERNEL_VERSION="6.1.34"
 KERNEL_DOWNLOAD_FOLDER="v6.x"
-KERNEL_TYPE="default"
+KERNEL_TYPE="allnoconfig"
 KERNEL_FOLDER="linux-${KERNEL_VERSION}"
 KERNEL_FILE="${KERNEL_FOLDER}.tar.xz"
 KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_DOWNLOAD_FOLDER}/${KERNEL_FILE}"
@@ -14,6 +14,7 @@ KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_DOWNLOAD_FOLDE
 KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/x86_64/boot/bzImage"
 # ARM
 # KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/arm/boot/zImage"
+KERNEL_BUILD_FLAGS="-j4"
 
 BUSYBOX_VERSION="1.36.1"
 BUSYBOX_FOLDER="busybox-${BUSYBOX_VERSION}"

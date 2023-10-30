@@ -32,9 +32,9 @@ then
 	cp "${kernel_config}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${KERNEL_BUILD_FLAGS}"
 	else
-		make
+		make "${KERNEL_BUILD_FLAGS}"
 	fi
 	touch stamp
 fi
