@@ -21,3 +21,6 @@ make_requires = [
     "pyflakes",
     "mypy",
 ]
+dev_requires = [
+    "pydmt",
+]

@@ -1,6 +1,9 @@
 #!/bin/bash -e
 
-source defs.sh
+# shellcheck source=/dev/null
+source "defs.sh"
+
+REAL_ARCH=$(arch)
 
 if [ ! -d build ]
 then
@@ -20,9 +23,19 @@ fi
 cd "${KERNEL_FOLDER}"
 if [ ! -f "stamp" ]
 then
-	# make allnoconfig
-	cp "../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_TYPE}" ".config"
-	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+	kernel_config="../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_TYPE}"
+	if [ ! -f "${kernel_config}" ]
+	then
+		echo "You are missing the kernel config file ${kernel_config}"
+		exit 1
+	fi
+	cp "${kernel_config}" ".config"
+	if [ "${REAL_ARCH}" != "${ARCH}" ]
+	then
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+	else
+		make
+	fi
 	touch stamp
 fi
 cd ..
@@ -41,8 +54,14 @@ if [ ! -f "stamp" ]
 then
 	# make defconfig
 	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_TYPE}" ".config"
-	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
-	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
+	if [ "${REAL_ARCH}" != "${ARCH}" ]
+	then
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
+	else
+		make
+		make install
+	fi
 	touch stamp
 fi
 if [ ! -f "${ROOTFS}" ]
