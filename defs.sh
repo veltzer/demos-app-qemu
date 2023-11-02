@@ -4,6 +4,7 @@ ARCH="x86_64"
 CROSS_COMPILE="arm-linux-gnueabihf-"
 
 MAKE_FLAGS="-j4"
+MAKE_FLAGS=""
 
 KERNEL_VERSION="6.1.34"
 KERNEL_DOWNLOAD_FOLDER="v6.x"
@@ -19,11 +20,11 @@ KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/x86/boot/bzImage"
 # KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/arm/boot/zImage"
 
 BUSYBOX_VERSION="1.36.1"
+BUSYBOX_CONFIG="defconfig"
 BUSYBOX_TAR_TOPLEVEL="busybox-${BUSYBOX_VERSION}"
 BUSYBOX_FOLDER="busybox-${BUSYBOX_VERSION}-${BUSYBOX_CONFIG}"
 BUSYBOX_FILE="${BUSYBOX_FOLDER}.tar.bz2"
 BUSYBOX_DOWNLOAD="https://busybox.net/downloads/${BUSYBOX_FILE}"
-BUSYBOX_CONFIG="defconfig"
 
 INITRD="initrd.cpio.gz"
 INITRD_FULL_PATH="build/${BUSYBOX_FOLDER}/${INITRD}"

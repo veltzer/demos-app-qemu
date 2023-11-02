@@ -33,9 +33,9 @@ then
 	cp "${kernel_config}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${MAKE_FLAGS}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" ${MAKE_FLAGS}
 	else
-		make "${MAKE_FLAGS}"
+		make ${MAKE_FLAGS}
 	fi
 	touch stamp
 fi
@@ -58,10 +58,10 @@ then
 	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_CONFIG}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${MAKE_FLAGS}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" ${MAKE_FLAGS}
 		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	else
-		make "${MAKE_FLAGS}"
+		make ${MAKE_FLAGS}
 		make install
 	fi
 	touch stamp
