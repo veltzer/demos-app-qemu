@@ -1,0 +1,1 @@
+find a way to reclaim my mouse from qemu graphic mode and document it.

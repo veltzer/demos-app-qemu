@@ -1,2 +1,5 @@
+find how to run qemu without graphics.
+	document this in my notes.
+	run it without graphics in my demos-qemu project.
 get to running everything on x86
 get to first run on arm

@@ -18,12 +18,13 @@ fi
 if [ ! -d "${KERNEL_FOLDER}" ]
 then
 	tar xvf "${KERNEL_FILE}"
+	mv "${KERNEL_TAR_TOPLEVEL}" "${KERNEL_FOLDER}"
 fi
 
 cd "${KERNEL_FOLDER}"
 if [ ! -f "stamp" ]
 then
-	kernel_config="../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_TYPE}"
+	kernel_config="../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_CONFIG}"
 	if [ ! -f "${kernel_config}" ]
 	then
 		echo "You are missing the kernel config file ${kernel_config}"
@@ -32,9 +33,9 @@ then
 	cp "${kernel_config}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${KERNEL_BUILD_FLAGS}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${MAKE_FLAGS}"
 	else
-		make "${KERNEL_BUILD_FLAGS}"
+		make "${MAKE_FLAGS}"
 	fi
 	touch stamp
 fi
@@ -48,18 +49,19 @@ fi
 if [ ! -d "${BUSYBOX_FOLDER}" ]
 then
 	tar xvf "${BUSYBOX_FILE}"
+	mv "${BUSYBOX_TAR_TOPLEVEL}" "${BUSYBOX_FOLDER}"
 fi
 cd "${BUSYBOX_FOLDER}"
 if [ ! -f "stamp" ]
 then
 	# make defconfig
-	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_TYPE}" ".config"
+	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_CONFIG}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" "${MAKE_FLAGS}"
 		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	else
-		make
+		make "${MAKE_FLAGS}"
 		make install
 	fi
 	touch stamp
