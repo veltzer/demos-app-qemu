@@ -9,6 +9,7 @@ https://mgalgs.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-ed
 https://blog.vmsplice.net/2011/02/near-instant-kernel-development-cycle.html
 https://ayeks.de/posts/2015-11-30-running-your-own-kernel-in-qemu/
 https://github.com/google/syzkaller/blob/master/docs/linux/setup_linux-host_qemu-vm_arm-kernel.md
+https://unix.stackexchange.com/questions/752318/how-to-boot-arm-kernel-using-qemu
 
 
 kernel configuration options
