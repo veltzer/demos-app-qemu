@@ -3,8 +3,8 @@ ARCH="x86_64"
 #CROSS_COMPILE="arm-linux-gnueabi-"
 CROSS_COMPILE="arm-linux-gnueabihf-"
 
-MAKE_FLAGS="-j4"
-MAKE_FLAGS=""
+export MAKEFLAGS="-j4"
+export MAKEFLAGS=""
 
 KERNEL_VERSION="6.1.34"
 KERNEL_DOWNLOAD_FOLDER="v6.x"

@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+KERNEL_CONFIG=""
+
 # shellcheck source=/dev/null
 source "defs.sh"
 
@@ -33,9 +35,9 @@ then
 	cp "${kernel_config}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" ${MAKE_FLAGS}
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
 	else
-		make ${MAKE_FLAGS}
+		make
 	fi
 	touch stamp
 fi
@@ -58,10 +60,10 @@ then
 	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_CONFIG}" ".config"
 	if [ "${REAL_ARCH}" != "${ARCH}" ]
 	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" ${MAKE_FLAGS}
+		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
 		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	else
-		make ${MAKE_FLAGS}
+		make
 		make install
 	fi
 	touch stamp
