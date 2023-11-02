@@ -8,12 +8,12 @@ source defs.sh
 # to see the list of all supported machines
 qemu-system-${ARCH}\
 	-kernel "${KERNEL_IMAGE}"\
+	-append "root=/dev/sr0"\
+	-initrd "${INITRD_FULL_PATH}"\
+	-machine "${QEMU_MACHINE_TYPE}"\
 	-nographic\
 	-append 'console=ttyS0'
-#	-append "root=/dev/ram"\
 #	-append "init=/bin/sh"
-#	-initrd "${INITRD_FULL_PATH}"\
-#	-machine "${QEMU_MACHINE_TYPE}"\
 #	-display curses
 #	-serial tty
 #	-append 'console=ttyS0'
