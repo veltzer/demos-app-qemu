@@ -14,3 +14,7 @@ char driver lab - https://github.com/dev-area/linux/blob/master/labs/Lab%20%E2%8
 interrupts lab - https://github.com/dev-area/linux/blob/master/labs/Lab%20%E2%80%93%20Writing%20a%20simple%20ISR.pdf
 
 more here: https://devarea.com/labs/#.ZAmYoXZBwuX
+
+
+building a qemu image:
+https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86
