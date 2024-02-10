@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 source defs.sh
 
@@ -6,17 +6,17 @@ source defs.sh
 # use:
 # $ qemu-system-arm -machine help
 # to see the list of all supported machines
-qemu-system-${ARCH}\
+# qemu-system-${ARCH}\
+qemu-system-armhf\
 	-kernel "${KERNEL_IMAGE}"\
-	-append "root=ram0"\
+	-append "root=/dev/ram rdinit=/linuxrc"\
 	-initrd "${INITRD_FULL_PATH}"\
 	-machine "${QEMU_MACHINE_TYPE}"\
-	-nographic\
 	-append 'console=ttyS0'
+#	-nographic\
 #	-append "init=/bin/sh"
 #	-display curses
 #	-serial tty
-#	-append 'console=ttyS0'
 #-monitor\
 #	-append "console=ttyAMA0"
 #	-machine virt
