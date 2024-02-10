@@ -2,4 +2,4 @@
 
 source defs.sh
 
-rm -rf "build/${KERNEL_FOLDER}" "build/${BUSYBOX_FOLDER}"
+find build -mindepth 1 -type d -exec rm -rf {} \;
