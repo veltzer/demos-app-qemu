@@ -9,11 +9,12 @@ source defs.sh
 # qemu-system-${ARCH}\
 qemu-system-armhf\
 	-kernel "${KERNEL_IMAGE}"\
-	-append "root=/dev/ram rdinit=/linuxrc"\
+	-append "root=/dev/ram"\
 	-initrd "${INITRD_FULL_PATH}"\
 	-machine "${QEMU_MACHINE_TYPE}"\
 	-append 'console=ttyS0'
 #	-nographic\
+#	-append "root=/dev/ram rdinit=/linuxrc"\
 #	-append "init=/bin/sh"
 #	-display curses
 #	-serial tty

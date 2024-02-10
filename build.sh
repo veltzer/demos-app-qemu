@@ -20,7 +20,7 @@ fi
 if [ ! -d "${KERNEL_BUILD_FOLDER}" ]
 then
 	mkdir "${KERNEL_BUILD_FOLDER}"
-	tar xvf "${KERNEL_FILE}" -C "${KERNEL_BUILD_FOLDER}"
+	tar xvf "${KERNEL_FILE}" -C "${KERNEL_BUILD_FOLDER}" --strip-components=1
 fi
 
 cd "${KERNEL_BUILD_FOLDER}"
