@@ -9,7 +9,7 @@ then
 CROSS_COMPILE="arm-linux-gnueabihf-"
 fi
 
-export MAKEFLAGS="-j4"
+export MAKEFLAGS="-j"
 # export MAKEFLAGS=""
 
 KERNEL_VERSION="6.7.4"
@@ -28,16 +28,16 @@ KERNEL_CONFIG="tinyconfig"
 fi
 
 KERNEL_TAR_TOPLEVEL="linux-${KERNEL_VERSION}"
-KERNEL_FOLDER="linux-${KERNEL_VERSION}-${KERNEL_CONFIG}"
 KERNEL_FILE="${KERNEL_TAR_TOPLEVEL}.tar.xz"
 KERNEL_DOWNLOAD="https://cdn.kernel.org/pub/linux/kernel/${KERNEL_DOWNLOAD_FOLDER}/${KERNEL_FILE}"
+KERNEL_BUILD_FOLDER="linux-${KERNEL_VERSION}-${ARCH}-${KERNEL_CONFIG}"
 if [ "$ARCH" = "x86_64" ]
 then
-KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/x86/boot/bzImage"
+KERNEL_IMAGE="build/${KERNEL_BUILD_FOLDER}/arch/x86/boot/bzImage"
 fi
 if [ "$ARCH" = "arm" ]
 then
-KERNEL_IMAGE="build/${KERNEL_FOLDER}/arch/arm/boot/zImage"
+KERNEL_IMAGE="build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/zImage"
 fi
 
 BUSYBOX_VERSION="1.36.1"

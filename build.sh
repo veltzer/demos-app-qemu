@@ -17,13 +17,13 @@ then
 	wget "${KERNEL_DOWNLOAD}"
 fi
 
-if [ ! -d "${KERNEL_FOLDER}" ]
+if [ ! -d "${KERNEL_BUILD_FOLDER}" ]
 then
-	tar xvf "${KERNEL_FILE}"
-	mv "${KERNEL_TAR_TOPLEVEL}" "${KERNEL_FOLDER}"
+	mkdir "${KERNEL_BUILD_FOLDER}"
+	tar xvf "${KERNEL_FILE}" -C "${KERNEL_BUILD_FOLDER}"
 fi
 
-cd "${KERNEL_FOLDER}"
+cd "${KERNEL_BUILD_FOLDER}"
 if [ ! -f "stamp" ]
 then
 	kernel_config="../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_CONFIG}"
