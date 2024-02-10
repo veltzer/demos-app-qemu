@@ -1,1 +1,2 @@
 find a way to reclaim my mouse from qemu graphic mode and document it.
+found a way to run ubuntu stuff on qemu.
