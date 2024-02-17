@@ -9,14 +9,13 @@ source defs.sh
 # qemu-system-${ARCH}\
 # export QEMU_AUDIO_DRV=none
 qemu-system-arm\
-	-M versatilepb\
+	-machine versatilepb\
 	-kernel "${KERNEL_IMAGE}"\
 	-audio driver=none,model=hda\
 	-nographic\
 	-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 	-initrd "${INITRD_FULL_PATH}"\
-	-D /tmp/log.txt\
-	-append "rdinit=/init root=/dev/mem"
+	-append "rdinit=/init"
 
 echo << EOS
 	-serial mon:stdio\
