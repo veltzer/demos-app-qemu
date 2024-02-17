@@ -7,12 +7,14 @@ source defs.sh
 # $ qemu-system-arm -machine help
 # to see the list of all supported machines
 # qemu-system-${ARCH}\
-export QEMU_AUDIO_DRV=none
-qemu-system-arm\
+# export QEMU_AUDIO_DRV=none
+qemu-system-arm64\
 	-kernel "${KERNEL_IMAGE}"\
-	-machine "${QEMU_MACHINE_TYPE}"\
 	-append 'console=ttyS0'\
+	-machine virt\
+	-audio driver=none,model=hda\
 	-nographic
+#	-machine "${QEMU_MACHINE_TYPE}"\
 #	-nodefaults\
 #	-audio-driver help
 #	-soundhw none\
