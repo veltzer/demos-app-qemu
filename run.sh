@@ -7,14 +7,18 @@ source defs.sh
 # $ qemu-system-arm -machine help
 # to see the list of all supported machines
 # qemu-system-${ARCH}\
-qemu-system-armhf\
+export QEMU_AUDIO_DRV=none
+qemu-system-arm\
+	-nodefaults\
 	-kernel "${KERNEL_IMAGE}"\
-	-append "root=/dev/ram"\
-	-initrd "${INITRD_FULL_PATH}"\
 	-machine "${QEMU_MACHINE_TYPE}"\
 	-append 'console=ttyS0'\
 	-nographic
+#	-audio-driver help
+#	-soundhw none\
 #	-serial tty
+#	-initrd "${INITRD_FULL_PATH}"\
+#	-append "root=/dev/ram"\
 #	-append "root=/dev/ram rdinit=/linuxrc"\
 #	-append "init=/bin/sh"
 #	-display curses
