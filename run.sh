@@ -16,7 +16,7 @@ qemu-system-arm\
 	-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 	-initrd "${INITRD_FULL_PATH}"\
 	-D /tmp/log.txt\
-	-append "rdinit=/sbin/init"
+	-append "rdinit=/init root=/dev/mem"
 
 echo << EOS
 	-serial mon:stdio\

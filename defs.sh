@@ -6,8 +6,8 @@ CROSS_COMPILE=""
 fi
 if [ "$ARCH" = "arm" ]
 then
-#CROSS_COMPILE="arm-linux-gnueabi-"
-CROSS_COMPILE="arm-linux-gnueabihf-"
+CROSS_COMPILE="arm-linux-gnueabi-"
+#CROSS_COMPILE="arm-linux-gnueabihf-"
 fi
 
 export MAKEFLAGS="-j4"
