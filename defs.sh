@@ -25,7 +25,8 @@ if [ "$ARCH" = "arm" ]
 then
 # KERNEL_CONFIG="micro_v7_defconfig"
 # KERNEL_CONFIG="micro_defconfig"
-KERNEL_CONFIG="tinyconfig"
+# KERNEL_CONFIG="tinyconfig"
+KERNEL_CONFIG="versatile_defconfig"
 fi
 
 KERNEL_TAR_TOPLEVEL="linux-${KERNEL_VERSION}"
