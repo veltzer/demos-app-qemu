@@ -1,5 +1,5 @@
-# ARCH="arm"
-ARCH="x86_64"
+ARCH="arm"
+# ARCH="x86_64"
 if [ "$ARCH" = "x86_64" ]
 then
 CROSS_COMPILE=""

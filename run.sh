@@ -12,12 +12,12 @@ qemu-system-armhf\
 	-append "root=/dev/ram"\
 	-initrd "${INITRD_FULL_PATH}"\
 	-machine "${QEMU_MACHINE_TYPE}"\
-	-append 'console=ttyS0'
-#	-nographic\
+	-append 'console=ttyS0'\
+	-nographic
+#	-serial tty
 #	-append "root=/dev/ram rdinit=/linuxrc"\
 #	-append "init=/bin/sh"
 #	-display curses
-#	-serial tty
 #-monitor\
 #	-append "console=ttyAMA0"
 #	-machine virt
