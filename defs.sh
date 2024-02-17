@@ -1,7 +1,8 @@
-ARCH="arm"
+# ARCH="arm"
+ARCH="x86_64"
 if [ "$ARCH" = "x86_64" ]
 then
-ARCH="x86_64"
+CROSS_COMPILE=""
 fi
 if [ "$ARCH" = "arm" ]
 then
@@ -9,7 +10,7 @@ then
 CROSS_COMPILE="arm-linux-gnueabihf-"
 fi
 
-export MAKEFLAGS="-j"
+export MAKEFLAGS="-j4"
 # export MAKEFLAGS=""
 
 KERNEL_VERSION="6.7.4"
