@@ -18,3 +18,6 @@ more here: https://devarea.com/labs/#.ZAmYoXZBwuX
 
 building a qemu image:
 https://gist.github.com/ncmiller/d61348b27cb17debd2a6c20966409e86
+https://linux-tips.com/t/booting-from-an-iso-image-using-qemu/136
+https://medium.com/@ThyCrow/compiling-the-linux-kernel-and-creating-a-bootable-iso-from-it-6afb8d23ba22
+https://ayeks.de/posts/2015-11-30-running-your-own-kernel-in-qemu/
