@@ -9,11 +9,11 @@ source defs.sh
 # qemu-system-${ARCH}\
 export QEMU_AUDIO_DRV=none
 qemu-system-arm\
-	-nodefaults\
 	-kernel "${KERNEL_IMAGE}"\
 	-machine "${QEMU_MACHINE_TYPE}"\
 	-append 'console=ttyS0'\
 	-nographic
+#	-nodefaults\
 #	-audio-driver help
 #	-soundhw none\
 #	-serial tty
