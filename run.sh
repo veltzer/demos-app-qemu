@@ -15,11 +15,12 @@ qemu-system-arm\
 	-nographic\
 	-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 	-initrd "${INITRD_FULL_PATH}"\
-	-append "root=/dev/ram mem=128M rdinit=/bin/sh"
+	-D /tmp/log.txt\
+	-append "rdinit=/sbin/init"
 
 echo << EOS
-	-append "serial=ttyAMA0"\
 	-serial mon:stdio\
+	-append "serial=ttyAMA0"\
 	-append "console=ttyAMA0"\
 	-append 'console=ttyS0'\
 	-machine "${QEMU_MACHINE_TYPE}"\
