@@ -1,33 +1,23 @@
-ARCH="arm"
-# ARCH="x86_64"
+# ARCH="arm"
+ARCH="x86_64"
+
 if [ "$ARCH" = "x86_64" ]
 then
-CROSS_COMPILE=""
-fi
-if [ "$ARCH" = "arm" ]
-then
-CROSS_COMPILE="arm-linux-gnueabi-"
-#CROSS_COMPILE="arm-linux-gnueabihf-"
-fi
-
-export MAKEFLAGS="-j4"
-# export MAKEFLAGS=""
-
-KERNEL_VERSION="6.7.4"
+CROSS_COMPILE="x86_64-linux-gnu-"
+KERNEL_VERSION="6.1.34"
 KERNEL_DOWNLOAD_FOLDER="v6.x"
-
-if [ "$ARCH" = "x86_64" ]
-then
-# KERNEL_CONFIG="allnoconfig"
 KERNEL_CONFIG="defconfig"
 fi
 if [ "$ARCH" = "arm" ]
 then
-# KERNEL_CONFIG="micro_v7_defconfig"
-# KERNEL_CONFIG="micro_defconfig"
-# KERNEL_CONFIG="tinyconfig"
+CROSS_COMPILE="arm-linux-gnueabi-"
+KERNEL_VERSION="6.7.4"
+KERNEL_DOWNLOAD_FOLDER="v6.x"
 KERNEL_CONFIG="versatile_defconfig"
 fi
+
+export MAKEFLAGS="-j4"
+# export MAKEFLAGS=""
 
 KERNEL_TAR_TOPLEVEL="linux-${KERNEL_VERSION}"
 KERNEL_FILE="${KERNEL_TAR_TOPLEVEL}.tar.xz"
@@ -60,6 +50,5 @@ QEMU_MACHINE_TYPE="q35"
 fi
 if [ "$ARCH" = "arm" ]
 then
-# QEMU_MACHINE_TYPE="virt"
 QEMU_MACHINE_TYPE="versatilepb"
 fi

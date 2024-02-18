@@ -33,12 +33,7 @@ then
 		exit 1
 	fi
 	cp "${kernel_config}" ".config"
-	if [ "${REAL_ARCH}" != "${ARCH}" ]
-	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
-	else
-		make
-	fi
+	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
 	touch stamp
 fi
 cd ..
@@ -56,23 +51,15 @@ fi
 cd "${BUSYBOX_FOLDER}"
 if [ ! -f "stamp" ]
 then
-	# make defconfig
 	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_CONFIG}" ".config"
-	if [ "${REAL_ARCH}" != "${ARCH}" ]
-	then
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
-		make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
-	else
-		make
-		make install
-	fi
+	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
+	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	touch stamp
 fi
 if [ ! -f "${INITRD}" ]
 then
 	cd _install
 	mkdir -pv {proc,sys,dev,bin,sbin,usr}
-	#cp ../../../init_scripts/rcS etc/init.d
 	cp ../../../init_scripts/init init
 	find . -print0 | cpio --null --verbose --create --format=newc | gzip -9 > "../${INITRD}"
 
