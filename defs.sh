@@ -46,7 +46,7 @@ INITRD_FULL_PATH="build/${BUSYBOX_FOLDER}/${INITRD}"
 # to see all machine types
 if [ "$ARCH" = "x86_64" ]
 then
-QEMU_MACHINE_TYPE="q35"
+QEMU_MACHINE_TYPE="ubuntu"
 fi
 if [ "$ARCH" = "arm" ]
 then
