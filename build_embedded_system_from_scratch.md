@@ -20,16 +20,24 @@
 * configure busybox with the default configuration called `defconfig`.
 
 * compile busy box using the cross compiler:
-    `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-`
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+```
 
 * install busy by issuing:
-    `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install`
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install
+```
 
 * Add salt and pepper (including an init script).
 
 * package everything with cpio(1).
 
 * run everything with `qemu-system-arm` and the right paramters:
+
+```bash
 	qemu-system-${ARCH}\
 		-machine "${QEMU_MACHINE_TYPE}"\
 		-kernel "${KERNEL_IMAGE}"\
@@ -38,3 +46,4 @@
 		-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 		-initrd "${INITRD_FULL_PATH}"\
 		-append "rdinit=/init"
+```
