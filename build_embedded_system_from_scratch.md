@@ -10,14 +10,24 @@
     download version 6.7.4
 
 * configure the kernel using the provided configuration callled
-    `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- versatile_defconfig`
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- versatile_defconfig
+```
 
 * compile the kernel with the cross compiler downloaded in (1):
-    `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-`
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
+```
 
 * download busybox latest version.
 
-* configure busybox with the default configuration called `defconfig`.
+* configure busybox with the default configuration called:
+
+```bash
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- defconfig
+```
 
 * compile busy box using the cross compiler:
 
