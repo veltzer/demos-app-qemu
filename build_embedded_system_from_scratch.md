@@ -41,7 +41,7 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install
 ```
 
-* Add salt and pepper (including an init script).
+* Add init process (process number 1).
 
 * package everything with `cpio(1)`:
 
