@@ -10,7 +10,7 @@
     download version 6.7.4
 
 * configure the kernel using the provided configuration callled
-    `versatile_defconfig`
+    `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- versatile_defconfig`
 
 * compile the kernel with the cross compiler downloaded in (1):
     `make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-`
