@@ -43,7 +43,12 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install
 
 * Add salt and pepper (including an init script).
 
-* package everything with cpio(1).
+* package everything with `cpio(1)`:
+
+```bash
+cd _install
+find . -print0 | cpio --null --verbose --create --format=newc | gzip -9 > initrd.cpio.gz
+```
 
 * run everything with `qemu-system-arm` and the right paramters:
 
