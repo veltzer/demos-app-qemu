@@ -41,8 +41,6 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- install
 ```
 
-* Add init process (process number 1).
-
 * package everything with `cpio(1)`:
 
 ```bash
@@ -60,5 +58,13 @@ find . -print0 | cpio --null --verbose --create --format=newc | gzip -9 > initrd
 		-nographic\
 		-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 		-initrd "${INITRD_FULL_PATH}"\
-		-append "rdinit=/init"
+		-append "rdinit=/bin/sh"
 ```
+
+* now add your own `init` process to the system as process number 1. Compile it yourself using the cross compiler and add it to the busybox initrd.
+
+* now add `/proc` and `/sys` support to the system.
+
+* now add logging support to the system (busybox supports a system logger).
+
+* now configure you init to be based on busybox init.
