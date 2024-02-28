@@ -1,6 +1,7 @@
 #!/bin/bash -ex
 
 source defs.sh
+#	-dtb "dt.dtb"\
 
 if [ "$ARCH" = "arm" ]
 then
@@ -11,7 +12,7 @@ then
 		-nographic\
 		-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
 		-initrd "${INITRD_FULL_PATH}"\
-		-append "rdinit=/init"
+		-append "rdinit=/sbin/init"
 fi
 if [ "$ARCH" = "x86_64" ]
 then
