@@ -115,3 +115,4 @@ This exercise demonstrates how to quickly set up a development environment using
 
 ## Hints
 * To get out of qemu while running in `-nographic` mode: `CTRL+A+C` and then `quit`.
+* Your username on a debian system is `debian`.
