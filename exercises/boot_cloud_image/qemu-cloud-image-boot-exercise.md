@@ -112,3 +112,6 @@ If you completed the challenges:
 ## Conclusion
 
 This exercise demonstrates how to quickly set up a development environment using QEMU and cloud images. This approach is particularly useful for kernel developers who need to test their code on clean, reproducible systems.
+
+## Hints
+* To get out of qemu while running in `-nographic` mode: `CTRL+A+C` and then `quit`.
