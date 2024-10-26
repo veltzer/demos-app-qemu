@@ -65,6 +65,10 @@ find . -print0 | cpio --null --verbose --create --format=newc | gzip -9 > initrd
 
 * now add `/proc` and `/sys` support to the system.
 
+* show that `top`, `ps` are starting to work.
+
 * now add logging support to the system (busybox supports a system logger).
+
+* show that you can log to your system logger using the `logger` command.
 
 * now configure you init to be based on busybox init.
