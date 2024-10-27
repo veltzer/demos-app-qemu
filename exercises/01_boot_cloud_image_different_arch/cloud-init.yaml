@@ -1,9 +1,12 @@
+password: ubuntu
+ssh_pwauth: true
+chpasswd:
+  expire: false
 users:
+  - default
   - name: ubuntu
-    plain_text_passwd: 'ubuntu'
-    lock_passwd: false
+    groups: [adm, dialout, cdrom, floppy, sudo, audio, dip, video, plugdev, netdev]
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
-packages:
-  - openssh-server
-ssh_pwauth: true
+    plain_text_passwd: ubuntu
+    lock_passwd: false

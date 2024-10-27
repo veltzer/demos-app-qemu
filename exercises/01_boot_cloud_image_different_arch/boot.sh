@@ -12,4 +12,5 @@ qemu-system-aarch64\
 	-netdev user,id=net0,hostfwd=tcp::2222-:22\
 	-device nec-usb-xhci\
 	-device usb-kbd\
-	-device usb-tablet
+	-device usb-tablet\
+	-serial mon:stdio
