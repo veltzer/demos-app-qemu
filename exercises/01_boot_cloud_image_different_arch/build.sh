@@ -10,3 +10,8 @@ if [ ! -f QEMU_EFI.fd ]
 then
 	wget https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd
 fi
+
+if [ ! -f cloud-init.iso ]
+then
+	cloud-localds cloud-init.iso cloud-init.yaml
+fi

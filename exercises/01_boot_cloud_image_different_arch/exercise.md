@@ -1,43 +1,61 @@
-# Exercise: Setting up and Running an ARM64 System on AMD64
+# Exercise: Running ARM64 Ubuntu on AMD64 using QEMU
 
 ## Objective
-Set up and run a complete ARM64 (aarch64) Ubuntu system on an AMD64 host using QEMU system emulation.
+Run an ARM64 (aarch64) Ubuntu system on an AMD64 host using QEMU system emulation and a pre-built cloud image.
 
 ## Prerequisites
 - An `AMD64/x86_64` Linux system
-- At least `4GB` of free disk space
-- At least `2GB` of RAM available for the virtual machine
+- At least 10GB of free disk space
+- At least 2GB of RAM available for the virtual machine
 
 ## Exercise Steps
 
 1. Install required packages
-
 ```bash
 sudo apt-get update
-sudo apt-get install qemu-system-arm qemu-efi-aarch64 qemu-utils
+sudo apt-get install qemu-system-arm qemu-utils wget cloud-image-utils
 ```
 
-1. Download Ubuntu ARM64 server image
-
+2. Download required files
 ```bash
-wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.img -O system.qcow2 
-```
+# Download Ubuntu ARM64 cloud image (it's in QCOW2 format despite the .img extension)
+wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.img
 
-1. Create a virtual disk
-
-```bash
-qemu-img resize system.qcow2 +5G
-```
-
-1. Download the ARM64 UEFI firmware
-
-```bash
+# Download the ARM64 UEFI firmware (required for booting)
 wget https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd
 ```
 
-1. Create a startup script named `start-arm64.sh`:
-
+3. Prepare the disk image
 ```bash
+# Copy the cloud image to our working image
+cp jammy-server-cloudimg-arm64.img ubuntu-arm64.qcow2
+
+# Resize it to 20GB
+qemu-img resize ubuntu-arm64.qcow2 20G
+```
+
+4. Create cloud-init configuration
+```bash
+# Create cloud-init config file
+cat > cloud-init.cfg <<EOF
+#cloud-config
+password: ubuntu
+chpasswd: { expire: False }
+ssh_pwauth: True
+hostname: ubuntu-arm64
+users:
+  - name: ubuntu
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+EOF
+
+# Create cloud-init disk
+cloud-localds cloud-init.img cloud-init.cfg
+```
+
+5. Create startup script
+```bash
+cat > start-arm64.sh <<EOF
 #!/bin/bash
 qemu-system-aarch64 \
     -M virt \
@@ -46,112 +64,81 @@ qemu-system-aarch64 \
     -m 2048 \
     -bios QEMU_EFI.fd \
     -drive if=virtio,file=ubuntu-arm64.qcow2,format=qcow2 \
-    -drive if=virtio,format=raw,file=jammy-live-server-arm64.iso \
+    -drive if=virtio,format=raw,file=cloud-init.img \
     -nographic \
     -device virtio-net-pci,netdev=net0 \
-    -netdev user,id=net0 \
+    -netdev user,id=net0,hostfwd=tcp::2222-:22 \
     -device nec-usb-xhci \
     -device usb-kbd \
     -device usb-tablet
-```
+EOF
 
-1. Make the script executable
-
-```bash
 chmod +x start-arm64.sh
 ```
 
-## Expected Results
-- The system should boot into the Ubuntu ARM64 installer
-- You can verify you're running ARM64 with `uname -m` which should show `aarch64`
-- The system should have network access through QEMU's user networking
-
-## Solution and Explanation
-
-1. First, let's understand the QEMU command options:
-    - `-M virt`: Uses the `virt` machine type, which is a virtual platform for ARM64
-    - `-cpu cortex-a72`: Emulates a Cortex-A72 processor
-    - `-smp 2`: Allocates 2 virtual CPU cores
-    - `-m 2048`: Allocates 2GB of RAM
-    - `-bios QEMU_EFI.fd`: Uses the UEFI firmware for booting
-    - The drive configurations use virtio for better performance
-
-1. To install the system:
-    - Run `./start-arm64.sh`
-    - Follow the Ubuntu server installation process
-    - When installation completes, shut down the VM
-
-1. To boot from the installed system, modify the script to remove the ISO:
-
+6. Start the virtual machine
 ```bash
-#!/bin/bash
-qemu-system-aarch64 \
-    -M virt \
-    -cpu cortex-a72 \
-    -smp 2 \
-    -m 2048 \
-    -bios QEMU_EFI.fd \
-    -drive if=virtio,file=ubuntu-arm64.qcow2,format=qcow2 \
-    -nographic \
-    -device virtio-net-pci,netdev=net0 \
-    -netdev user,id=net0 \
-    -device nec-usb-xhci \
-    -device usb-kbd \
-    -device usb-tablet
+./start-arm64.sh
 ```
 
-1. Verification steps:
+## Login Information
+- Username: `ubuntu`
+- Password: `ubuntu`
+- SSH access: `ssh -p 2222 ubuntu@localhost`
 
+## Verification Steps
+
+After logging in, verify the system is running as ARM64:
 ```bash
 # Check architecture
 uname -m
 # Should output: aarch64
 
-# Check CPU information
+# Check system information
 cat /proc/cpuinfo
 # Should show ARM CPU information
 
-# Test system performance
-dd if=/dev/zero of=test bs=1M count=1024
-# This will show you the disk I/O performance
+# Check disk space
+df -h
+# Should show ~20GB available
 ```
+
+## Understanding Key Components
+
+1. **Cloud Image**: The Ubuntu cloud image is a pre-built system image designed for virtual machines and cloud environments.
+
+2. **UEFI Firmware**: QEMU_EFI.fd serves as the virtual machine's firmware/BIOS, necessary for booting the ARM64 system.
+
+3. **Cloud-init**: Handles first-boot initialization, setting up the user account and initial configuration.
+
+4. **QEMU Options Explained**:
+   - `-M virt`: Uses QEMU's virtual machine platform for ARM64
+   - `-cpu cortex-a72`: Emulates an ARM Cortex-A72 processor
+   - `-smp 2`: Provides 2 CPU cores
+   - `-m 2048`: Allocates 2GB RAM
+   - `-nographic`: Runs in terminal mode
+   - `hostfwd=tcp::2222-:22`: Forwards host port 2222 to guest port 22 (SSH)
 
 ## Common Issues and Solutions
 
-1. If the system fails to boot:
-    - Verify that virtualization is enabled in your BIOS
-    - Check if your kernel supports ARM64 emulation
-    - Ensure you have enough free RAM
+1. Boot Failures:
+   - Check if virtualization is enabled in BIOS
+   - Ensure sufficient RAM is available
+   - Verify all files (UEFI firmware, images) are present
 
-1. If networking doesn't work:
-    - Check if your host firewall is blocking QEMU
-    - Verify the virtio-net device is properly initialized
-
-1. If the system is slow:
-    - Try reducing the number of virtual CPUs or RAM
-    - Use virtio drivers where possible
-    - Consider enabling KVM if your CPU supports it
-
-## Optional Enhancements
-
-1. Add port forwarding for SSH access:
-
-```bash
--netdev user,id=net0,hostfwd=tcp::2222-:22
-```
-
-1. Add a shared folder between host and guest:
-
-```bash
--virtfs local,path=/path/to/share,mount_tag=host0,security_model=passthrough,id=host0
-```
+2. Network Issues:
+   - Check host firewall settings
+   - Verify host port 2222 is not in use
+   - Wait for complete boot before trying SSH
 
 ## Clean Up
-To remove the virtual machine:
 
+To remove everything:
 ```bash
 rm ubuntu-arm64.qcow2
 rm QEMU_EFI.fd
-rm jammy-live-server-arm64.iso
+rm cloud-init.img
+rm cloud-init.cfg
 rm start-arm64.sh
+rm jammy-server-cloudimg-arm64.img
 ```

@@ -7,5 +7,5 @@ then
 fi
 if [ ! -f cloud-init.iso ]
 then
-	cloud-localds cloud-init.iso cloud-init.txt
+	cloud-localds cloud-init.iso cloud-init.yaml
 fi
