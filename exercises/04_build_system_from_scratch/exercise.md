@@ -6,7 +6,7 @@
 * install qemu from the ubuntu apt repository
     `qemu-system-arm`
 
-* download the linux kernel source code from [here](http://www.kernel.org).
+* download the Linux kernel source code from [here](http://www.kernel.org).
     download version 6.7.4
 
 * configure the kernel using the provided configuration callled
@@ -48,17 +48,17 @@ cd _install
 find . -print0 | cpio --null --verbose --create --format=newc | gzip -9 > initrd.cpio.gz
 ```
 
-* run everything with `qemu-system-arm` and the right paramters:
+* run everything with `qemu-system-arm` and the right parameters:
 
 ```bash
-	qemu-system-${ARCH}\
-		-machine "${QEMU_MACHINE_TYPE}"\
-		-kernel "${KERNEL_IMAGE}"\
-		-audio driver=none,model=hda\
-		-nographic\
-		-dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
-		-initrd "${INITRD_FULL_PATH}"\
-		-append "rdinit=/bin/sh"
+qemu-system-${ARCH}\
+    -machine "${QEMU_MACHINE_TYPE}"\
+    -kernel "${KERNEL_IMAGE}"\
+    -audio driver=none,model=hda\
+    -nographic\
+    -dtb "build/${KERNEL_BUILD_FOLDER}/arch/arm/boot/dts/arm/versatile-pb.dtb"\
+    -initrd "${INITRD_FULL_PATH}"\
+    -append "rdinit=/bin/sh"
 ```
 
 * now add your own `init` process to the system as process number 1. Compile it yourself using the cross compiler and add it to the busybox initrd.

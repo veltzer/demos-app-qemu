@@ -128,10 +128,10 @@ Create a `Makefile` in the same directory:
 obj-m += qemu_exercise.o
 
 all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+    make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
 #### Step 2: Create a QEMU disk image
@@ -145,10 +145,11 @@ qemu-img create -f qcow2 qemu_exercise.qcow2 10G
 * Install a minimal Linux distribution (e.g., Debian) on the image using QEMU.
 
 * Boot the image and install necessary tools:
-   ```
-   apt-get update
-   apt-get install build-essential linux-headers-$(uname -r)
-   ```
+
+```shell
+apt-get update
+apt-get install build-essential linux-headers-$(uname -r)
+```
 
 * Copy the module source and Makefile to the guest system.
 
@@ -165,41 +166,48 @@ qemu-system-x86_64 -hda qemu_exercise.qcow2 -m 2G -enable-kvm -kernel /boot/vmli
 In the QEMU guest:
 
 1. Build the module:
-   ```
-   make
-   ```
 
-2. Load the module:
-   ```
-   sudo insmod qemu_exercise.ko
-   ```
+```shell
+make
+```
 
-3. Test reading from the device:
-   ```
-   cat /dev/qemu_exercise
-   ```
+1. Load the module:
 
-4. Test writing to the device:
-   ```
-   echo "Test message" > /dev/qemu_exercise
-   ```
+```shell
+sudo insmod qemu_exercise.ko
+```
 
-5. Check kernel logs:
-   ```
-   dmesg | tail
-   ```
+1. Test reading from the device:
+
+```shell
+cat /dev/qemu_exercise
+```
+
+1. Test writing to the device:
+
+```shell
+echo "Test message" > /dev/qemu_exercise
+```
+
+1. Check kernel logs:
+
+```shell
+dmesg | tail
+```
 
 #### Step 5: Use QEMU features to analyze the module behavior
 
 1. Use QEMU's GDB stub for debugging:
    Add `-s -S` to the QEMU command line, then connect with GDB and set breakpoints in the module functions.
 
-2. Use QEMU tracing:
+1. Use QEMU tracing:
    Add `-trace events=/tmp/events.txt` to the QEMU command line, with an events file containing:
-   ```
-   kvm_exit
-   kvm_entry
-   ```
+
+```shell
+kvm_exit
+kvm_entry
+```
+
    This will help you analyze VM exits related to your module operations.
 
 ### Solution
@@ -207,19 +215,21 @@ In the QEMU guest:
 If implemented correctly, you should see the following results:
 
 1. When you run `cat /dev/qemu_exercise`, it should output:
-   ```
-   Hello from QEMU!
-   ```
 
-2. When you run `echo "Test message" > /dev/qemu_exercise`, you should see in the kernel log (via `dmesg | tail`):
-   ```
-   QEMU Exercise: Received 12 characters from the user
-   ```
+```shell
+Hello from QEMU!
+```
 
-3. The kernel log should also show messages for device open and close operations.
+1. When you run `echo "Test message" > /dev/qemu_exercise`, you should see in the kernel log (via `dmesg | tail`):
 
-4. When using GDB, you should be able to set breakpoints in your module functions and step through the code.
+```text
+QEMU Exercise: Received 12 characters from the user
+```
 
-5. The QEMU trace output should show VM exits corresponding to your module's I/O operations.
+1. The kernel log should also show messages for device open and close operations.
+
+1. When using GDB, you should be able to set breakpoints in your module functions and step through the code.
+
+1. The QEMU trace output should show VM exits corresponding to your module's I/O operations.
 
 This exercise demonstrates implementing a basic kernel module, testing it with QEMU, and using QEMU's advanced features for debugging and analysis.

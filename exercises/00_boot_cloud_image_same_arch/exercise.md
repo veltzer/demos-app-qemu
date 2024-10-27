@@ -91,28 +91,29 @@ sudo shutdown -h now
 ## Challenges
 
 1. Modify the cloud-init configuration to set a different hostname for the VM.
-2. Use QEMU's snapshot feature to create a snapshot of your VM after installing development tools.
-3. Set up port forwarding to allow SSH access to the VM from your host machine.
+1. Use QEMU's snapshot feature to create a snapshot of your VM after installing development tools.
+1. Set up port forwarding to allow SSH access to the VM from your host machine.
 
 ## Solution
 
 Here's what you should expect:
 
 1. After running the QEMU command, you should see boot messages followed by a login prompt.
-2. Logging in with `debian` and `mypassword` should give you a command prompt.
-3. `uname -a` should show information about the Debian system and kernel.
-4. `df -h` should show the increased disk space (around 15GB total).
-5. After updating and installing packages, you should be able to compile kernel modules.
+1. Logging in with `debian` and `mypassword` should give you a command prompt.
+1. `uname -a` should show information about the Debian system and kernel.
+1. `df -h` should show the increased disk space (around 15GB total).
+1. After updating and installing packages, you should be able to compile kernel modules.
 
 If you completed the challenges:
 1. Your VM should have the custom hostname you set.
-2. You should be able to list and revert to your snapshot using QEMU commands.
-3. You should be able to SSH into your VM using `ssh -p 2222 debian@localhost`.
+1. You should be able to list and revert to your snapshot using QEMU commands.
+1. You should be able to SSH into your VM using `ssh -p 2222 debian@localhost`.
 
 ## Conclusion
 
 This exercise demonstrates how to quickly set up a development environment using QEMU and cloud images. This approach is particularly useful for kernel developers who need to test their code on clean, reproducible systems.
 
 ## Hints
-* To get out of qemu while running in `-nographic` mode: `CTRL+A+C` and then `quit`.
-* Your username on a debian system is `debian`.
+- To get out of qemu while running in `-nographic` mode: `CTRL+a+c` and then `quit`.
+- Your username on a debian system is `debian`.
+- Your password on the target system is `mypassword`.

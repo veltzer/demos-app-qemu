@@ -9,6 +9,7 @@ packages = [
     "gcc-arm-linux-gnueabihf",
     "qemu-system-arm",
     "qemu-utils",
+    "qemu-efi-aarch64",
     "qemu-system",
     "busybox",
     "cloud-image-utils",
