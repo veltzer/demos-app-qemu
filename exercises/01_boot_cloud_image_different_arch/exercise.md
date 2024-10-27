@@ -4,9 +4,9 @@
 Set up and run a complete ARM64 (aarch64) Ubuntu system on an AMD64 host using QEMU system emulation.
 
 ## Prerequisites
-- An AMD64/x86_64 Linux system
-- At least 4GB of free disk space
-- At least 2GB of RAM available for the virtual machine
+- An `AMD64/x86_64` Linux system
+- At least `4GB` of free disk space
+- At least `2GB` of RAM available for the virtual machine
 
 ## Exercise Steps
 
@@ -20,13 +20,13 @@ sudo apt-get install qemu-system-arm qemu-efi-aarch64 qemu-utils
 1. Download Ubuntu ARM64 server image
 
 ```bash
-wget https://cdimage.ubuntu.com/ubuntu-server/jammy/daily-live/current/jammy-live-server-arm64.iso
+wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.img -O system.qcow2 
 ```
 
 1. Create a virtual disk
 
 ```bash
-qemu-img create -f qcow2 ubuntu-arm64.qcow2 20G
+qemu-img resize system.qcow2 +5G
 ```
 
 1. Download the ARM64 UEFI firmware
