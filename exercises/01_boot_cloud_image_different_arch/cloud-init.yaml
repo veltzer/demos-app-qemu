@@ -1,9 +1,9 @@
-#cloud-config
-password: ubuntu
-chpasswd: { expire: False }
-ssh_pwauth: True
-hostname: ubuntu-arm64
 users:
   - name: ubuntu
+    plain_text_passwd: 'ubuntu'
+    lock_passwd: false
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
+packages:
+  - openssh-server
+ssh_pwauth: true
