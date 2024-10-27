@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1030 
+personal_ws-1.1 en 1035 
 AARRR
 ACLs
 ADPlus
@@ -160,6 +160,7 @@ EAX
 EBS
 ECR
 ECS
+EFI
 EFS
 EGit
 EINTR
@@ -837,6 +838,7 @@ mk
 mkdir
 mmap
 mmiotrace
+modularity
 mortem
 mprotect
 mq
@@ -948,11 +950,14 @@ spinlocks
 splunk
 sqlmap
 staticcast
+stderr
+stdout
 strace
 struct
 stylesheets
 subfolders
 subnets
+subprocess
 sudo
 syllabi
 sys

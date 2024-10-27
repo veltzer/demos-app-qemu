@@ -11,12 +11,14 @@ Run an ARM64 (aarch64) Ubuntu system on an AMD64 host using QEMU system emulatio
 ## Exercise Steps
 
 1. Install required packages
+
 ```bash
 sudo apt-get update
 sudo apt-get install qemu-system-arm qemu-utils wget cloud-image-utils
 ```
 
-2. Download required files
+1. Download required files
+
 ```bash
 # Download Ubuntu ARM64 cloud image (it's in QCOW2 format despite the .img extension)
 wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.img
@@ -25,16 +27,17 @@ wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-arm64.i
 wget https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd
 ```
 
-3. Prepare the disk image
+1. Prepare the disk image
+
 ```bash
 # Copy the cloud image to our working image
-cp jammy-server-cloudimg-arm64.img ubuntu-arm64.qcow2
-
-# Resize it to 20GB
-qemu-img resize ubuntu-arm64.qcow2 20G
+cp jammy-server-cloudimg-arm64.img system.qcow2
+# Resize it by 5GB
+qemu-img resize system.qcow2 +5G
 ```
 
-4. Create cloud-init configuration
+1. Create cloud-init configuration
+
 ```bash
 # Create cloud-init config file
 cat > cloud-init.cfg <<EOF
@@ -53,10 +56,11 @@ EOF
 cloud-localds cloud-init.img cloud-init.cfg
 ```
 
-5. Create startup script
+1. Create startup script
+
 ```bash
-cat > start-arm64.sh <<EOF
-#!/bin/bash
+cat > boot.sh <<EOF
+#!/bin/bash -e
 qemu-system-aarch64 \
     -M virt \
     -cpu cortex-a72 \
@@ -73,12 +77,13 @@ qemu-system-aarch64 \
     -device usb-tablet
 EOF
 
-chmod +x start-arm64.sh
+chmod +x boot.sh
 ```
 
-6. Start the virtual machine
+1. Start the virtual machine
+
 ```bash
-./start-arm64.sh
+./boot.sh
 ```
 
 ## Login Information
@@ -89,6 +94,7 @@ chmod +x start-arm64.sh
 ## Verification Steps
 
 After logging in, verify the system is running as ARM64:
+
 ```bash
 # Check architecture
 uname -m
@@ -107,35 +113,35 @@ df -h
 
 1. **Cloud Image**: The Ubuntu cloud image is a pre-built system image designed for virtual machines and cloud environments.
 
-2. **UEFI Firmware**: QEMU_EFI.fd serves as the virtual machine's firmware/BIOS, necessary for booting the ARM64 system.
+1. **UEFI Firmware**: QEMU_EFI.fd serves as the virtual machine's firmware/BIOS, necessary for booting the ARM64 system.
 
-3. **Cloud-init**: Handles first-boot initialization, setting up the user account and initial configuration.
+1. **Cloud-init**: Handles first-boot initialization, setting up the user account and initial configuration.
 
-4. **QEMU Options Explained**:
-   - `-M virt`: Uses QEMU's virtual machine platform for ARM64
-   - `-cpu cortex-a72`: Emulates an ARM Cortex-A72 processor
-   - `-smp 2`: Provides 2 CPU cores
-   - `-m 2048`: Allocates 2GB RAM
-   - `-nographic`: Runs in terminal mode
-   - `hostfwd=tcp::2222-:22`: Forwards host port 2222 to guest port 22 (SSH)
+1. **QEMU Options Explained**:
+    - `-M virt`: Uses QEMU's virtual machine platform for ARM64
+    - `-cpu cortex-a72`: Emulates an ARM Cortex-A72 processor
+    - `-smp 2`: Provides 2 CPU cores
+    - `-m 2048`: Allocates 2GB RAM
+    - `-nographic`: Runs in terminal mode
+    - `hostfwd=tcp::2222-:22`: Forwards host port 2222 to guest port 22 (SSH)
 
 ## Common Issues and Solutions
 
 1. Boot Failures:
-   - Check if virtualization is enabled in BIOS
-   - Ensure sufficient RAM is available
-   - Verify all files (UEFI firmware, images) are present
-
-2. Network Issues:
-   - Check host firewall settings
-   - Verify host port 2222 is not in use
-   - Wait for complete boot before trying SSH
+    - Check if virtualization is enabled in BIOS
+    - Ensure sufficient RAM is available
+    - Verify all files (UEFI firmware, images) are present
+1. Network Issues:
+    - Check host firewall settings
+    - Verify host port 2222 is not in use
+    - Wait for complete boot before trying SSH
 
 ## Clean Up
 
 To remove everything:
+
 ```bash
-rm ubuntu-arm64.qcow2
+rm system.qcow2
 rm QEMU_EFI.fd
 rm cloud-init.img
 rm cloud-init.cfg

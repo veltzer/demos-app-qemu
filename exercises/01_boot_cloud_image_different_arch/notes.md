@@ -1,8 +1,10 @@
-The UEFI firmware (QEMU_EFI.fd) is needed because it serves as the system's BIOS/firmware for the virtual ARM64 machine. When you're running an ARM64 system under QEMU, you need:
+# Notes
+
+The UEFI firmware (`QEMU_EFI.fd`) is needed because it serves as the system's BIOS/firmware for the virtual ARM64 machine. When you're running an ARM64 system under QEMU, you need:
 
 1. A way to initialize the virtual hardware
-2. A way to load and start the operating system
-3. A firmware interface that the operating system expects
+1. A way to load and start the operating system
+1. A firmware interface that the operating system expects
 
 The UEFI firmware provides all of these functions. Without it, the virtual machine wouldn't be able to:
 - Initialize the virtual hardware properly

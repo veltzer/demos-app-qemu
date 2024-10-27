@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 qemu-system-aarch64\
 	-M virt\
 	-cpu cortex-a72\
@@ -10,7 +10,4 @@ qemu-system-aarch64\
 	-nographic\
 	-device virtio-net-pci,netdev=net0\
 	-netdev user,id=net0,hostfwd=tcp::2222-:22\
-	-device nec-usb-xhci\
-	-device usb-kbd\
-	-device usb-tablet\
 	-serial mon:stdio
