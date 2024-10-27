@@ -11,4 +11,5 @@ packages = [
     "qemu-utils",
     "qemu-system",
     "busybox",
+    "cloud-image-utils",
 ]
