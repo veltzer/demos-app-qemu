@@ -13,6 +13,7 @@ packages = [
     "qemu-system",
     "busybox",
     "cloud-image-utils",
+    "genisoimage",
     # ruby stuff
     "ruby-bundler",
     "rbenv",
