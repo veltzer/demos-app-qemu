@@ -1,3 +1,2 @@
 #cloud-config
-runcmd:
-  - whoami
+final_message: "Cloud-init is running!"
