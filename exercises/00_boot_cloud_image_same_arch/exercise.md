@@ -14,7 +14,7 @@ Set up and boot a cloud-based Linux image using QEMU, preparing it for kernel de
 Download a Debian cloud image:
 
 ```bash
-wget https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd64.qcow2
+wget https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd64.qcow2 -O system.qcow2
 ```
 
 ### 2. Prepare the Image
@@ -22,17 +22,16 @@ wget https://cloud.debian.org/images/cloud/bullseye/latest/debian-11-generic-amd
 Rename and resize the image:
 
 ```bash
-mv debian-11-generic-amd64.qcow2 dev_environment.qcow2
-qemu-img resize dev_environment.qcow2 +5G
+qemu-img resize system.qcow2 +5G
 ```
 
 ### 3. Create a Cloud-Init Configuration
 
-Create a file named `cloud-init.txt` with the following content:
+Create a file named `user-data` with the following content:
 
 ```yaml
 #cloud-config
-password: mypassword
+password: password
 chpasswd: { expire: False }
 ssh_pwauth: True
 ```
@@ -43,7 +42,7 @@ Install cloud-image-utils and create the ISO:
 
 ```bash
 sudo apt-get install cloud-image-utils
-cloud-localds cloud-init.iso cloud-init.txt
+cloud-localds cloud-init.iso user-data meta-data
 ```
 
 ### 5. Boot the Image with QEMU
@@ -51,18 +50,18 @@ cloud-localds cloud-init.iso cloud-init.txt
 Start QEMU with the following command:
 
 ```bash
-qemu-system-x86_64 \
-  -hda dev_environment.qcow2 \
-  -cdrom cloud-init.iso \
-  -m 2G \
-  -nographic \
-  -enable-kvm \
+qemu-system-x86_64\
+  -hda system.qcow2\
+  -cdrom cloud-init.iso\
+  -m 2G\
+  -nographic\
+  -enable-kvm\
   -net nic -net user,hostfwd=tcp::2222-:22
 ```
 
 ### 6. Log In and Verify
 
-- Once the system boots, log in with username `debian` and password `mypassword`.
+- Once the system boots, log in with username `debian` and password `password`.
 - Verify the system is working correctly:
 
 ```bash
@@ -116,4 +115,4 @@ This exercise demonstrates how to quickly set up a development environment using
 ## Hints
 - To get out of qemu while running in `-nographic` mode: `CTRL+a+c` and then `quit`.
 - Your username on a debian system is `debian`.
-- Your password on the target system is `mypassword`.
+- Your password on the target system is `password`.

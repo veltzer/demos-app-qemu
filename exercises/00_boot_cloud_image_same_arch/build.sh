@@ -7,5 +7,6 @@ then
 fi
 if [ ! -f cloud-init.iso ]
 then
-	cloud-localds cloud-init.iso cloud-init.yaml
+	cloud-init schema --config-file user-data
+	cloud-localds cloud-init.iso user-data meta-data
 fi
