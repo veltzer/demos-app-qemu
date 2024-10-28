@@ -13,5 +13,11 @@ fi
 
 if [ ! -f cloud-init.iso ]
 then
-	cloud-localds cloud-init.iso cloud-init.yaml
+	# validate the file
+	cloud-init schema --config-file user-data
+	cloud-localds cloud-init.iso user-data meta-data
+	# genisoimage -quiet -input-charset utf8 -output cloud-init.iso -volid cidata -r -joliet user-data
+	# touch meta-data
+	# mkisofs -quiet -input-charset utf8 -output cloud-init.iso -volid cidata -joliet -rock user-data meta-data
+	# rm -f meta-data
 fi
