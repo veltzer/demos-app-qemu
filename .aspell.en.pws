@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1057 
+personal_ws-1.1 en 1058 
 AARRR
 ACLs
 ADPlus
@@ -896,6 +896,7 @@ perceptron
 perf
 phonebook
 pid
+pinctrl
 pingable
 pinmux
 pipenv
