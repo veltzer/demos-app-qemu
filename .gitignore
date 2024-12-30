@@ -53,6 +53,8 @@ modules.order
 .modules.*.cmd
 .Module.*.cmd
 /flags.cfg
+# device tree binary files
+*.dtb
 
 # sphinx
 /docs/_build/
