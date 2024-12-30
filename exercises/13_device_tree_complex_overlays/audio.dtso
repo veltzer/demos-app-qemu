@@ -1,0 +1,42 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "vendor,board";
+
+    fragment@0 {
+        target = <&i2c1>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            clock-frequency = <400000>;
+
+            codec@1a {
+                compatible = "vendor,audio-codec";
+                reg = <0x1a>;
+                sampling-rate = <44100>;
+                status = "okay";
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&pinctrl>;
+        __overlay__ {
+            audio_pins: audio_pins {
+                pins = "gpio18", "gpio19", "gpio20", "gpio21";
+                function = "audio";
+            };
+        };
+    };
+
+    __parameters__ {
+        rate = "44.1khz";
+        status = "okay";
+    };
+
+    __overrides__ {
+        rate_48khz = <0>,"+0-0-0-1-sampling-rate:0=48000";
+    };
+};

@@ -1,0 +1,42 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "vendor,board";
+
+    fragment@0 {
+        target = <&i2c1>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            clock-frequency = <400000>;
+
+            display@3c {
+                compatible = "vendor,display-controller";
+                reg = <0x3c>;
+                display-resolution = <800 480>;
+            };
+        };
+    };
+
+    fragment@1 {
+        target = <&pinctrl>;
+        __overlay__ {
+            display_pins: display_pins {
+                pins = "gpio2", "gpio3";
+                function = "i2c1";
+            };
+        };
+    };
+
+    __parameters__ {
+        resolution = "800x480";
+        status = "okay";
+    };
+
+    __overrides__ {
+        resolution_1024x600 = <0>,"+0-0-0-1-display-resolution:0=1024",
+                            <0>,"+0-0-0-1-display-resolution:4=600";
+    };
+};
