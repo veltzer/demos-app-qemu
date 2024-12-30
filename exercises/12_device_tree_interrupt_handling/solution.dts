@@ -1,0 +1,68 @@
+/dts-v1/;
+
+/ {
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        gic: interrupt-controller@7d000000 {
+            compatible = "arm,gic-400";
+            reg = <0x0 0x7d000000 0x1000>;
+            #interrupt-cells = <3>;
+            interrupt-controller;
+        };
+
+        gpio: gpio@7e200000 {
+            compatible = "vendor,gpio";
+            reg = <0x0 0x7e200000 0x1000>;
+            status = "okay";
+            interrupt-parent = <&gic>;
+            interrupts = <0 17 4>;
+            interrupt-controller;
+            #interrupt-cells = <2>;
+        };
+
+        i2c0: i2c@7e205000 {
+            compatible = "vendor,i2c";
+            reg = <0x0 0x7e205000 0x1000>;
+            status = "okay";
+            interrupt-parent = <&gpio>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+            
+            sensor1: sensor@48 {
+                compatible = "vendor,sensor1";
+                reg = <0x48>;
+                interrupt-parent = <&gpio>;
+                interrupts = <4 1>;    /* Shared GPIO4, active-high */
+            };
+            
+            sensor2: sensor@49 {
+                compatible = "vendor,sensor2";
+                reg = <0x49>;
+                interrupt-parent = <&gpio>;
+                interrupts = <4 1>;    /* Shared GPIO4, active-high */
+            };
+        };
+
+        spi0: spi@7e204000 {
+            compatible = "vendor,spi";
+            reg = <0x0 0x7e204000 0x1000>;
+            status = "okay";
+            interrupt-parent = <&gpio>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+            
+            adc@0 {
+                compatible = "vendor,adc";
+                reg = <0>;
+                interrupt-parent = <&gpio>;
+                interrupts = <5 2>;    /* GPIO5, active-low */
+            };
+        };
+    };
+};

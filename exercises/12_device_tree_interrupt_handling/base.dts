@@ -1,0 +1,38 @@
+/dts-v1/;
+
+/ {
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        gic: interrupt-controller@7d000000 {
+            compatible = "arm,gic-400";
+            reg = <0x0 0x7d000000 0x1000>;
+            #interrupt-cells = <3>;
+            interrupt-controller;
+            interrupt-parent = <&gic>;
+        };
+
+        gpio: gpio@7e200000 {
+            compatible = "vendor,gpio";
+            reg = <0x0 0x7e200000 0x1000>;
+            status = "disabled";
+        };
+
+        i2c0: i2c@7e205000 {
+            compatible = "vendor,i2c";
+            reg = <0x0 0x7e205000 0x1000>;
+            status = "disabled";
+        };
+
+        spi0: spi@7e204000 {
+            compatible = "vendor,spi";
+            reg = <0x0 0x7e204000 0x1000>;
+            status = "disabled";
+        };
+    };
+};
