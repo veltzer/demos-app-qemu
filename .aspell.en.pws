@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1046 
+personal_ws-1.1 en 1052 
 AARRR
 ACLs
 ADPlus
@@ -323,8 +323,10 @@ Lucene
 LynuxWorks
 MCU
 MIMO
+MISO
 MMU
 MMX
+MOSI
 MSysGit
 MTD
 MVC
@@ -409,6 +411,7 @@ POSIX
 PRELOAD
 PSSCOR
 PWD
+PWM
 Parallelizing
 Parametrizing
 Params
@@ -472,6 +475,7 @@ Rollup
 Runnable
 Runtime
 SAAS
+SCK
 SCL
 SCM
 SCONS
@@ -625,6 +629,7 @@ ZooKeeper
 Zuul
 aarch
 addOnLoad
+addr
 aio
 ajax
 allarch
@@ -955,6 +960,7 @@ siginterrupt
 signalfd
 sigprocmask
 solrconfig
+spi
 spidering
 spinlock
 spinlocks
