@@ -7,6 +7,8 @@ Configure an I2C bus with multiple devices and an SPI bus with shared interrupt 
 
 ## Base Device Tree
 
+Is in the exercise folder.
+
 ## Tasks
 1. Configure I2C bus:
    - Temperature sensor (addr: 0x48) with 12-bit resolution

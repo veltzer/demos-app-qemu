@@ -9,7 +9,7 @@ All sharing the same GPIO bank.
 
 ## Base Device Tree
 
-Can be found in the exercise folder.
+Is in the exercise folder.
 
 ## Tasks
 1. Configure pin multiplexing:

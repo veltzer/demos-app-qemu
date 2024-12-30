@@ -10,9 +10,9 @@ Device Tree Overlays allow dynamic modification of hardware configuration withou
 
 For example, on a Raspberry Pi, overlays let you enable I2C, SPI, or UART interfaces and configure devices connected to them without modifying the base system device tree.
 
-## Well start with the basic.dts file
+## Base Device Tree
 
-This can be found in the exercise folder.
+Is in the exercise folder.
 
 ## Tasks
 1. Create an overlay to enable UART0:

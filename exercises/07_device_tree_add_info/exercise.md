@@ -3,9 +3,9 @@
 ## Goal
 Modify a BCM2835-based board's device tree to add I2C peripherals and advanced configurations
 
-## Initial Device Tree
+## Base Device Tree
 
-Is in the folder of the exercise.
+Is in the exercise folder.
 
 ## Basic Tasks
 1. Add TMP102 temperature sensor at I2C address 0x48

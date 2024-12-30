@@ -9,6 +9,8 @@ Configure power management for a system with:
 
 ## Base Device Tree
 
+Is in the exercise folder.
+
 ## Tasks
 1. Configure WiFi power states:
    - Define operating points (voltage/frequency pairs)
