@@ -1,0 +1,93 @@
+/dts-v1/;
+
+/ {
+    compatible = "myboard";
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        pinctrl: pinctrl@7e200000 {
+            compatible = "vendor,gpio-controller";
+            reg = <0x0 0x7e200000 0x100>;
+            gpio-controller;
+            #gpio-cells = <2>;
+
+            spi0_pins: spi0_pins {
+                pins = "gpio8", "gpio9", "gpio10", "gpio11";
+                function = "spi0";
+                drive-strength = <8>;
+                bias-pull-down;
+                sleep-state = "gpio";
+            };
+
+            i2c0_pins: i2c0_pins {
+                pins = "gpio2", "gpio3";
+                function = "i2c0";
+                drive-strength = <4>;
+                bias-pull-up;
+                sleep-state = "gpio";
+            };
+
+            pwm0_pin: pwm0_pin {
+                pins = "gpio18";
+                function = "pwm0";
+                drive-strength = <2>;
+                bias-disable;
+                sleep-state = "gpio";
+            };
+        };
+
+        spi0: spi@7e204000 {
+            compatible = "vendor,spi-controller";
+            reg = <0x0 0x7e204000 0x1000>;
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            pinctrl-names = "default", "sleep";
+            pinctrl-0 = <&spi0_pins>;
+
+            display@0 {
+                compatible = "vendor,spi-display";
+                reg = <0>;
+                spi-max-frequency = <32000000>;
+                status = "okay";
+            };
+        };
+
+        i2c0: i2c@7e205000 {
+            compatible = "vendor,i2c-controller";
+            reg = <0x0 0x7e205000 0x1000>;
+            status = "okay";
+            #address-cells = <1>;
+            #size-cells = <0>;
+            pinctrl-names = "default", "sleep";
+            pinctrl-0 = <&i2c0_pins>;
+
+            temp-sensor@48 {
+                compatible = "vendor,temp-sensor";
+                reg = <0x48>;
+                status = "okay";
+            };
+        };
+
+        pwm: pwm@7e20c000 {
+            compatible = "vendor,pwm-controller";
+            reg = <0x0 0x7e20c000 0x1000>;
+            status = "okay";
+            #pwm-cells = <2>;
+            pinctrl-names = "default", "sleep";
+            pinctrl-0 = <&pwm0_pin>;
+
+            led-controller {
+                compatible = "pwm-leds";
+                pwms = <&pwm 0 1000000>;
+                brightness-levels = <0 4 8 16 32 64 128 255>;
+                default-brightness = <128>;
+            };
+        };
+    };
+};
