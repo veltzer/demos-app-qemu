@@ -1,3 +1,4 @@
+.PHONY: all
 all: devicetree-start.dtb devicetree-phase1.dtb devicetree-phase2.dtb
 
 devicetree-start.dtb: devicetree-start.dts

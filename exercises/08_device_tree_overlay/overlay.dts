@@ -1,0 +1,27 @@
+/dts-v1/;
+/plugin/;
+
+&{/} {
+    clocks {
+        uart0_clk: uart0_clk {
+            compatible = "fixed-clock";
+            #clock-cells = <0>;
+            clock-frequency = <48000000>;
+        };
+    };
+};
+
+&uart0 {
+    status = "okay";
+    clocks = <&uart0_clk>;
+    current-speed = <115200>;
+    
+    gps {
+        compatible = "generic-serial-gps";
+        current-speed = <9600>;
+        data-bits = <8>;
+        parity = "none";
+        stop-bits = <1>;
+        fix-rate-ms = <1000>;
+    };
+};

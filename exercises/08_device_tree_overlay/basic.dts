@@ -1,0 +1,16 @@
+/dts-v1/;
+
+/ {
+    compatible = "brcm,bcm2835";
+    model = "Raspberry Pi Zero W";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+    soc {
+        uart0: uart@7e201000 {
+            compatible = "arm,pl011";
+            reg = <0x7e201000 0x1000>;
+            status = "disabled";
+        };
+    };
+};
