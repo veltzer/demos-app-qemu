@@ -14,6 +14,7 @@ packages = [
     "busybox",
     "cloud-image-utils",
     "genisoimage", # for mkisofs(1), genisoimage(1)
+    "device-tree-compiler",
     # ruby stuff
     "ruby-bundler",
     "rbenv",
