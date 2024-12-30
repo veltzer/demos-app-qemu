@@ -1,0 +1,38 @@
+/dts-v1/;
+
+/ {
+    compatible = "myboard";
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        gpio: gpio@7e200000 {
+            compatible = "vendor,gpio";
+            reg = <0x0 0x7e200000 0x1000>;
+            gpio-controller;
+            #gpio-cells = <2>;
+            interrupt-controller;
+            #interrupt-cells = <2>;
+        };
+
+        i2c0: i2c@7e205000 {
+            compatible = "vendor,i2c-controller";
+            reg = <0x0 0x7e205000 0x1000>;
+            status = "disabled";
+            #address-cells = <1>;
+            #size-cells = <0>;
+        };
+
+        spi0: spi@7e204000 {
+            compatible = "vendor,spi-controller";
+            reg = <0x0 0x7e204000 0x1000>;
+            status = "disabled";
+            #address-cells = <1>;
+            #size-cells = <0>;
+        };
+    };
+};
