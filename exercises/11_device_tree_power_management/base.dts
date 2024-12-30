@@ -1,0 +1,43 @@
+/dts-v1/;
+
+/ {
+    compatible = "myboard";
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        power: power-controller@7e200000 {
+            compatible = "vendor,power-controller";
+            reg = <0x0 0x7e200000 0x1000>;
+            #power-domain-cells = <1>;
+        };
+
+        wifi: wifi@7e300000 {
+            compatible = "vendor,wifi";
+            reg = <0x0 0x7e300000 0x1000>;
+            status = "disabled";
+        };
+
+        display: display@7e400000 {
+            compatible = "vendor,display";
+            reg = <0x0 0x7e400000 0x1000>;
+            status = "disabled";
+        };
+
+        mmc: mmc@7e500000 {
+            compatible = "vendor,mmc";
+            reg = <0x0 0x7e500000 0x1000>;
+            status = "disabled";
+        };
+
+        usb: usb@7e980000 {
+            compatible = "vendor,usb";
+            reg = <0x0 0x7e980000 0x1000>;
+            status = "disabled";
+        };
+    };
+};

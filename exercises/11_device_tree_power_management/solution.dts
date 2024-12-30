@@ -1,0 +1,120 @@
+/dts-v1/;
+
+/ {
+    compatible = "myboard";
+    #address-cells = <2>;
+    #size-cells = <1>;
+
+    backlight_pwr: regulator-backlight {
+        compatible = "regulator-fixed";
+        regulator-name = "backlight_pwr";
+        regulator-min-microvolt = <3300000>;
+        regulator-max-microvolt = <3300000>;
+    };
+
+    soc {
+        #address-cells = <2>;
+        #size-cells = <1>;
+        ranges;
+
+        power: power-controller@7e200000 {
+            compatible = "vendor,power-controller";
+            reg = <0x0 0x7e200000 0x1000>;
+            #power-domain-cells = <1>;
+        };
+
+        gpio: gpio-controller@7e216000 {
+            compatible = "vendor,gpio-controller";
+            reg = <0x0 0x7e216000 0x1000>;
+            gpio-controller;
+            #gpio-cells = <2>;
+        };
+
+        pwm: pwm@7e20c000 {
+            compatible = "vendor,pwm";
+            reg = <0x0 0x7e20c000 0x1000>;
+            #pwm-cells = <2>;
+            status = "okay";
+        };
+
+        wifi: wifi@7e300000 {
+            compatible = "vendor,wifi";
+            reg = <0x0 0x7e300000 0x1000>;
+            status = "okay";
+            power-domains = <&power 1>;
+            operating-points-v2 = <&wifi_opp_table>;
+            wakeup-source;
+            wowlan-triggers = "magic-packet disconnect any";
+            power-state-d0-name = "full_power";
+            power-state-d1-name = "light_sleep";
+            power-state-d2-name = "deep_sleep";
+            power-state-d3-name = "off";
+            power-states = <0x1 0x2 0x3 0x4>;
+        };
+
+        wifi_opp_table: opp-table {
+            compatible = "operating-points-v2";
+            opp-shared;
+
+            opp-800000000 {
+                opp-hz = <800000000>;
+                opp-microvolt = <1200000>;
+                power-state = <0x1>;
+            };
+            
+            opp-400000000 {
+                opp-hz = <400000000>;
+                opp-microvolt = <1000000>;
+                power-state = <0x2>;
+            };
+        };
+
+        display: display@7e400000 {
+            compatible = "vendor,display";
+            reg = <0x0 0x7e400000 0x1000>;
+            status = "okay";
+            power-domains = <&power 2>;
+            dpms-state-names = "on", "standby", "suspend", "off";
+            dpms-states = <0x0 0x1 0x2 0x3>;
+
+            backlight {
+                compatible = "pwm-backlight";
+                power-supply = <&backlight_pwr>;
+                pwms = <&pwm 0 100000>;
+                brightness-levels = <0 4 8 16 32 64 128 255>;
+                default-brightness-level = <6>;
+                power-sequence-delay-ms = <20>;
+            };
+        };
+
+        mmc: mmc@7e500000 {
+            compatible = "vendor,mmc";
+            reg = <0x0 0x7e500000 0x1000>;
+            status = "okay";
+            power-domains = <&power 3>;
+            pm-runtime-enabled;
+            pm-runtime-autosuspend-delay-ms = <2000>;
+            cd-gpios = <&gpio 47 0>;
+            cd-inverted;
+            wakeup-source;
+        };
+
+        usb: usb@7e980000 {
+            compatible = "vendor,usb";
+            reg = <0x0 0x7e980000 0x1000>;
+            status = "okay";
+            power-domains = <&power 4>;
+            wakeup-source;
+            remote-wakeup-connected;
+            power-state-names = "full-power", "selective-suspend", "suspend", "hibernate";
+            power-states = <0x1 0x2 0x3 0x4>;
+            #address-cells = <2>;
+            #size-cells = <1>;
+
+            port@0,1 {
+                reg = <0x0 0x1 0x1>;
+                wakeup-source;
+            };
+        };
+    };
+};

@@ -1,4 +1,4 @@
-personal_ws-1.1 en 1052 
+personal_ws-1.1 en 1056 
 AARRR
 ACLs
 ADPlus
@@ -122,6 +122,7 @@ DMS
 DNS
 DOM
 DPDK
+DPMS
 DQL
 DRM
 DSL
@@ -605,6 +606,7 @@ WAF
 WAFs
 WEP
 WG
+WLAN
 WPA
 WSL
 Wallclock
@@ -647,6 +649,7 @@ async
 atomics
 autotools
 awk
+backlight
 balancer
 balancers
 basename
@@ -1031,6 +1034,7 @@ vmsplice
 vscode
 waitqueues
 wakelocks
+wakeup
 watchdogging
 watchpoints
 wc
