@@ -1,9 +1,18 @@
 # Device Tree Overlay Exercise
 
-## Base Device Tree
+## Understanding Device Tree Overlays
 
-Is in the exercise folder.
-```
+Device Tree Overlays allow dynamic modification of hardware configuration without changing the base device tree. They're commonly used to:
+* Enable/disable hardware interfaces
+* Add new devices to existing buses
+* Modify hardware parameters
+* Configure pin multiplexing
+
+For example, on a Raspberry Pi, overlays let you enable I2C, SPI, or UART interfaces and configure devices connected to them without modifying the base system device tree.
+
+## Well start with the basic.dts file
+
+This can be found in the exercise folder.
 
 ## Tasks
 1. Create an overlay to enable UART0:
@@ -11,12 +20,13 @@ Is in the exercise folder.
    - Set clock frequency to 48MHz
    - Configure for 115200 8N1
 
-2. Add a device connected to UART:
+1. Add a device connected to UART:
    - GPS module at 9600 baud
    - Define protocol parameters
    - Add required properties
 
 ## Expected Output Format
+
 ```dts
 /dts-v1/;
 /plugin/;
@@ -27,6 +37,7 @@ Is in the exercise folder.
 ```
 
 ## Validation
+
 ```bash
 dtc -I dts -O dtb -o test.dtbo overlay.dts
 ```
