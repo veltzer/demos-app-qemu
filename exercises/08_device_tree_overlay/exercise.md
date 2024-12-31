@@ -39,7 +39,7 @@ Is in the exercise folder.
 ## Validation
 
 ```bash
-dtc -I dts -O dtb -o test.dtbo overlay.dts
+dtc -I dts -O dtb -o solution.dtbo overlay.dts
 ```
 
 ## Hints

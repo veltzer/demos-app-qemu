@@ -33,7 +33,7 @@ Use device-tree-compiler (dtc) to verify syntax:
 
 ```bash
 sudo apt-get install device-tree-compiler
-dtc -I dts -O dtb -o test.dtb devicetree-exercise.dts
+dtc -I dts -O dtb -o solution.dtb solutio.dts
 ```
 
 ## Expected Skills

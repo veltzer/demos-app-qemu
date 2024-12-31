@@ -26,5 +26,5 @@ dtc -@ -I dts -O dtb -o display.dtbo display.dts
 dtc -@ -I dts -O dtb -o audio.dtbo audio.dts
 
 # Test parameters
-fdtoverlay -i base.dtb -o test.dtb display.dtbo audio.dtbo
+fdtoverlay -i base.dtb -o solution.dtb display.dtbo audio.dtbo
 ```

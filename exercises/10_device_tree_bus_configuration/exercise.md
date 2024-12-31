@@ -31,5 +31,5 @@ Is in the exercise folder.
 ## Validation
 
 ```bash
-dtc -I dts -O dtb -o test.dtb board.dts
+dtc -I dts -O dtb -o solution.dtb solution.dts
 ```
