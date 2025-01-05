@@ -1,5 +1,6 @@
 #!/bin/sh
 
+touch /dev/tty1 /dev/tty2 /dev/tty3 /dev/tty4
 mount -t proc none /proc
 mount -t sysfs none /sys
 exec "/bin/sh"

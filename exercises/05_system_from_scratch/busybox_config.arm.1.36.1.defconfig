@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Busybox version: 1.36.1
-# Sat Feb 10 11:17:48 2024
+# Tue Dec 31 15:23:54 2024
 #
 CONFIG_HAVE_DOT_CONFIG=y
 
@@ -968,7 +968,7 @@ CONFIG_PSCAN=y
 CONFIG_ROUTE=y
 CONFIG_SLATTACH=y
 CONFIG_SSL_CLIENT=y
-CONFIG_TC=y
+# CONFIG_TC=y
 CONFIG_FEATURE_TC_INGRESS=y
 CONFIG_TCPSVD=y
 CONFIG_UDPSVD=y

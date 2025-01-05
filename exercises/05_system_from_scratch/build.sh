@@ -56,11 +56,12 @@ then
 	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}" install
 	touch stamp
 fi
+
 if [ ! -f "${INITRD}" ]
 then
 	cd _install
 	mkdir -pv {proc,sys,dev,bin,sbin,usr}
-	cp ../../../init_scripts/init init
+	cp ../../../init_scripts/init /sbin/init
 	find . -print0 | cpio --owner root:root --null --verbose --create --format=newc | gzip -9 > "../${INITRD}"
 
 fi

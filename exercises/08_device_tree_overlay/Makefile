@@ -8,7 +8,7 @@ uart-gps.dtbo: overlay.dts
 
 .PHONY: apply
 apply:
-	sudo dtoverlay uart-gps.dtbo
+	dtoverlay basic.dtb uart-gps.dtbo -o final.dtb
 
 .PHONY: clean
 clean:
