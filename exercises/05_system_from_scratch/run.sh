@@ -21,6 +21,6 @@ then
 		-kernel "${KERNEL_IMAGE}"\
 		-audio driver=none,model=hda\
 		-initrd "${INITRD_FULL_PATH}"\
-		-append "root=/dev/ram rdinit=/init"\
+		-append "root=/dev/ram rdinit=/init"
 #		-nographic\
 fi
