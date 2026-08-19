@@ -5,6 +5,7 @@
 **Objective:** Test a kernel on multiple architectures using QEMU.
 
 **Steps:**
+
 1. Download kernel sources for a recent version.
 2. Configure and compile the kernel for x86_64 and ARM64.
 3. Create or download minimal root filesystems for both architectures.
@@ -18,6 +19,7 @@
 **Objective:** Set up and use GDB to debug a running kernel in QEMU.
 
 **Steps:**
+
 1. Compile a kernel with debugging symbols.
 2. Start QEMU with GDB stub enabled.
 3. Connect GDB to the running QEMU instance.
@@ -31,6 +33,7 @@
 **Objective:** Understand and modify a QEMU device model.
 
 **Steps:**
+
 1. Examine the source code of a simple QEMU device (e.g., the "edu" device).
 2. Modify the device to add a new register or functionality.
 3. Recompile QEMU with your changes.
@@ -44,6 +47,7 @@
 **Objective:** Use QEMU to boot a kernel with ftrace enabled and analyze kernel behavior.
 
 **Steps:**
+
 1. Configure and compile a kernel with ftrace support.
 2. Boot the kernel in QEMU with appropriate command-line options for ftrace.
 3. Enable tracing for specific kernel functions.
@@ -57,6 +61,7 @@
 **Objective:** Explore various QEMU networking modes and their impact on kernel network stack.
 
 **Steps:**
+
 1. Set up QEMU VMs using different networking modes (user, tap, bridge).
 2. Analyze the kernel's view of the network in each mode.
 3. Implement a simple network protocol in the kernel.
@@ -69,6 +74,7 @@
 **Objective:** Compare performance of different QEMU block device types and their impact on kernel I/O.
 
 **Steps:**
+
 1. Create disk images in various formats (raw, qcow2, vmdk).
 2. Boot a kernel in QEMU using these different disk types.
 3. Write a kernel module to perform disk benchmarking.
@@ -82,6 +88,7 @@
 **Objective:** Use QEMU to study and optimize kernel memory management.
 
 **Steps:**
+
 1. Boot a kernel in QEMU with various memory sizes.
 2. Write a kernel module that allocates and manipulates large amounts of memory.
 3. Use QEMU's memory tracing features to analyze memory access patterns.

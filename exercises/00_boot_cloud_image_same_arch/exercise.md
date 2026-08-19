@@ -1,9 +1,11 @@
 # QEMU Exercise: Booting a Cloud-Based Image
 
 ## Objective
+
 Set up and boot a cloud-based Linux image using QEMU, preparing it for kernel development work.
 
 ## Prerequisites
+
 - QEMU installed on your system
 - Basic familiarity with command-line operations
 
@@ -104,6 +106,7 @@ Here's what you should expect:
 1. After updating and installing packages, you should be able to compile kernel modules.
 
 If you completed the challenges:
+
 1. Your VM should have the custom hostname you set.
 1. You should be able to list and revert to your snapshot using QEMU commands.
 1. You should be able to SSH into your VM using `ssh -p 2222 debian@localhost`.
@@ -113,6 +116,7 @@ If you completed the challenges:
 This exercise demonstrates how to quickly set up a development environment using QEMU and cloud images. This approach is particularly useful for kernel developers who need to test their code on clean, reproducible systems.
 
 ## Hints
+
 - To get out of qemu while running in `-nographic` mode: `CTRL+a+c` and then `quit`.
 - Your username on a debian system is `debian`.
 - Your password on the target system is `password`.

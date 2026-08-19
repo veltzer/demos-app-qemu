@@ -1,0 +1,6 @@
+# Long lines are the nature of this content: the exercises quote full qemu
+# command lines (up to ~220 chars) that must not be wrapped. The 1000-char
+# allowance is the same one the sibling demos repos carried in their
+# pydmt-era markdown configs (.mdl.style.rb: rule 'MD013', line_length 1000).
+[MD013]
+line-length = 1000

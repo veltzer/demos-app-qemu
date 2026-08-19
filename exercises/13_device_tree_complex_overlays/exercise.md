@@ -5,6 +5,7 @@
 Is in the exercise folder.
 
 ## Tasks
+
 1. Create parameterized overlays:
    - Display overlay (supports different resolutions: 800x480, 1024x600)
    - Audio overlay (configurable sampling rates: 44.1kHz, 48kHz)
@@ -18,6 +19,7 @@ Is in the exercise folder.
    - Both require pinctrl configuration
 
 ## Validation
+
 Test with:
 
 ```bash

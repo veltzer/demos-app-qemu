@@ -7,6 +7,7 @@ The UEFI firmware (`QEMU_EFI.fd`) is needed because it serves as the system's BI
 1. A firmware interface that the operating system expects
 
 The UEFI firmware provides all of these functions. Without it, the virtual machine wouldn't be able to:
+
 - Initialize the virtual hardware properly
 - Load the Linux kernel from the disk
 - Provide necessary UEFI services that modern operating systems expect

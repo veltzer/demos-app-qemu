@@ -1,7 +1,9 @@
 # Power Management Exercise
 
 ## Scenario
+
 Configure power management for a system with:
+
 - WiFi module with multiple power states
 - Display with backlight control
 - SD card interface with runtime PM
@@ -12,6 +14,7 @@ Configure power management for a system with:
 Is in the exercise folder.
 
 ## Tasks
+
 1. Configure WiFi power states:
    - Define operating points (voltage/frequency pairs)
    - Add power state transitions

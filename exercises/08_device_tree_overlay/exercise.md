@@ -3,10 +3,11 @@
 ## Understanding Device Tree Overlays
 
 Device Tree Overlays allow dynamic modification of hardware configuration without changing the base device tree. They're commonly used to:
-* Enable/disable hardware interfaces
-* Add new devices to existing buses
-* Modify hardware parameters
-* Configure pin multiplexing
+
+- Enable/disable hardware interfaces
+- Add new devices to existing buses
+- Modify hardware parameters
+- Configure pin multiplexing
 
 For example, on a Raspberry Pi, overlays let you enable I2C, SPI, or UART interfaces and configure devices connected to them without modifying the base system device tree.
 
@@ -15,6 +16,7 @@ For example, on a Raspberry Pi, overlays let you enable I2C, SPI, or UART interf
 Is in the exercise folder.
 
 ## Tasks
+
 1. Create an overlay to enable UART0:
    - Enable the UART by changing status to "okay"
    - Set clock frequency to 48MHz
@@ -43,6 +45,7 @@ dtc -I dts -O dtb -o solution.dtbo overlay.dts
 ```
 
 ## Hints
+
 - Use /plugin/ directive for overlays
 - Reference nodes with & symbol
 - Use status = "okay" to enable devices

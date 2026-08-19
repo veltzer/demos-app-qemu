@@ -3,6 +3,7 @@
 ## Exercise: Implementing and Testing a Simple Character Device Driver
 
 ### Objective
+
 Implement a simple character device driver that creates a device file `/dev/qemu_exercise`. When read from, it should return the string "Hello from QEMU!". When written to, it should print the written content to the kernel log. Test this driver using QEMU.
 
 ### Steps

@@ -1,7 +1,9 @@
 # Pin Configuration Exercise
 
 ## Scenario
+
 You have a board with limited GPIO pins and need to configure:
+
 - SPI display (4 pins: MOSI, MISO, SCK, CS)
 - I2C sensor (2 pins: SDA, SCL)
 - PWM LED controller (1 pin)
@@ -12,6 +14,7 @@ All sharing the same GPIO bank.
 Is in the exercise folder.
 
 ## Tasks
+
 1. Configure pin multiplexing:
    - SPI: GPIO 8-11
    - I2C: GPIO 2-3
@@ -39,6 +42,7 @@ dtc -I dts -O dtb -o solution.dtb solution.dts
 ```
 
 ## Expected Skills
+
 - Pin multiplexing configuration
 - Understanding pin electrical properties
 - Managing shared GPIO resources

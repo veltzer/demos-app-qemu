@@ -1,15 +1,15 @@
 # Build ARM embedded system from scratch
 
 * install a cross compiler from the ubuntu apt repository
-    `gcc-arm-linux-gnueabi`
+  `gcc-arm-linux-gnueabi`
 
 * install qemu from the ubuntu apt repository
-    `qemu-system-arm`
+  `qemu-system-arm`
 
-* download the Linux kernel source code from [here](http://www.kernel.org).
-    download version 6.7.4
+* download the Linux kernel source code from [kernel.org](http://www.kernel.org).
+  download version 6.7.4
 
-* configure the kernel using the provided configuration callled
+* configure the kernel using the provided configuration called
 
 ```bash
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- versatile_defconfig

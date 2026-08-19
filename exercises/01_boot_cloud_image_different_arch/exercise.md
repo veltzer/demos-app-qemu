@@ -1,9 +1,11 @@
 # Exercise: Running ARM64 Ubuntu on AMD64 using QEMU
 
 ## Objective
+
 Run an ARM64 (aarch64) Ubuntu system on an AMD64 host using QEMU system emulation and a pre-built cloud image.
 
 ## Prerequisites
+
 - An `AMD64/x86_64` Linux system
 - At least 10GB of free disk space
 - At least 2GB of RAM available for the virtual machine
@@ -87,6 +89,7 @@ chmod +x boot.sh
 ```
 
 ## Login Information
+
 - Username: `ubuntu`
 - Password: `ubuntu`
 - SSH access: `ssh -p 2222 ubuntu@localhost`
@@ -118,23 +121,23 @@ df -h
 1. **Cloud-init**: Handles first-boot initialization, setting up the user account and initial configuration.
 
 1. **QEMU Options Explained**:
-    - `-M virt`: Uses QEMU's virtual machine platform for ARM64
-    - `-cpu cortex-a72`: Emulates an ARM Cortex-A72 processor
-    - `-smp 2`: Provides 2 CPU cores
-    - `-m 2048`: Allocates 2GB RAM
-    - `-nographic`: Runs in terminal mode
-    - `hostfwd=tcp::2222-:22`: Forwards host port 2222 to guest port 22 (SSH)
+   - `-M virt`: Uses QEMU's virtual machine platform for ARM64
+   - `-cpu cortex-a72`: Emulates an ARM Cortex-A72 processor
+   - `-smp 2`: Provides 2 CPU cores
+   - `-m 2048`: Allocates 2GB RAM
+   - `-nographic`: Runs in terminal mode
+   - `hostfwd=tcp::2222-:22`: Forwards host port 2222 to guest port 22 (SSH)
 
 ## Common Issues and Solutions
 
 1. Boot Failures:
-    - Check if virtualization is enabled in BIOS
-    - Ensure sufficient RAM is available
-    - Verify all files (UEFI firmware, images) are present
+   - Check if virtualization is enabled in BIOS
+   - Ensure sufficient RAM is available
+   - Verify all files (UEFI firmware, images) are present
 1. Network Issues:
-    - Check host firewall settings
-    - Verify host port 2222 is not in use
-    - Wait for complete boot before trying SSH
+   - Check host firewall settings
+   - Verify host port 2222 is not in use
+   - Wait for complete boot before trying SSH
 
 ## Clean Up
 

@@ -1,11 +1,13 @@
 # QEMU CPU Capabilities Analysis Exercise
 
 ## Overview
+
 Create a tool to analyze and display QEMU's CPU emulation capabilities across different architectures. This exercise will help you understand QEMU's CPU models and machine types while practicing system command execution and output parsing in Python.
 
 ## Requirements
 
 ### Core Requirements
+
 1. Create a Python script that:
    - Analyzes CPU capabilities for both x86_64 and aarch64 architectures
    - Lists all available CPU types for each architecture
@@ -14,6 +16,7 @@ Create a tool to analyze and display QEMU's CPU emulation capabilities across di
    - Handles cases where QEMU packages aren't installed
 
 ### Technical Specifications
+
 1. CPU Information Collection:
    - Use `qemu-system-[arch] -cpu ?` to get CPU types
    - Use `qemu-system-[arch] -cpu [type],?` to get detailed features
@@ -26,6 +29,7 @@ Create a tool to analyze and display QEMU's CPU emulation capabilities across di
    - Format long output for readability
 
 ### Implementation Details
+
 1. Create functions to:
    - Execute QEMU commands safely
    - Parse command output into structured data
@@ -39,12 +43,14 @@ Create a tool to analyze and display QEMU's CPU emulation capabilities across di
    - Handle stderr/stdout appropriately (QEMU uses both)
 
 ## Bonus Challenges
+
 1. Add support for additional architectures
 1. Implement JSON export functionality
 1. Add capability to compare CPU features between different types
 1. Create visual representation of CPU feature relationships
 
 ## Evaluation Criteria
+
 - Code organization and modularity
 - Error handling completeness
 - Output clarity and usefulness
@@ -52,7 +58,9 @@ Create a tool to analyze and display QEMU's CPU emulation capabilities across di
 - Performance with large output
 
 ## Learning Objectives
+
 After completing this exercise, you should understand:
+
 - How to interact with system commands from Python
 - QEMU's CPU emulation capabilities
 - Text parsing and formatting techniques
@@ -60,12 +68,14 @@ After completing this exercise, you should understand:
 - Command-line tool development
 
 ## Prerequisites
+
 - Python 3.x
 - QEMU installation
 - Basic understanding of CPU architectures
 - Familiarity with subprocess management in Python
 
 ## Example Usage
+
 The completed script should be usable as follows:
 
 ```bash
@@ -75,6 +85,7 @@ The completed script should be usable as follows:
 And should produce clear, organized output showing CPU capabilities and machine types for each architecture.
 
 ## Additional Notes
+
 - Consider the readability of the output for both technical and non-technical users
 - Remember that QEMU commands might output to either stdout or stderr
 - Different QEMU versions might have slightly different output formats

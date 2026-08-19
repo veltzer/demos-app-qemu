@@ -5,6 +5,7 @@
 Is in the exercise folder.
 
 ## Tasks
+
 1. Configure GPIO as interrupt controller:
    - Support GPIO interrupts
    - Configure interrupt parent
@@ -21,6 +22,7 @@ Is in the exercise folder.
    - Set interrupt priorities
 
 ## Expected Output
+
 - Working interrupt configuration
 - Proper shared interrupt handling
 - Complete interrupt hierarchy

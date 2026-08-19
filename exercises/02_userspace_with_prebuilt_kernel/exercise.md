@@ -1,9 +1,11 @@
 # QEMU Exercise: Building and Booting a Custom BusyBox Userspace (No Kernel Build)
 
 ## Objective
+
 Build a minimal Linux userspace environment using BusyBox, create a disk image, and boot it using QEMU with a pre-built kernel.
 
 ## Prerequisites
+
 - Linux development environment
 - QEMU installed
 - Basic knowledge of Linux commands
@@ -133,6 +135,7 @@ qemu-system-x86_64 -kernel bzImage \
 ```
 
 ## Expected Outcome
+
 After executing the QEMU command, you should see the kernel boot messages followed by a shell prompt. The system will be a minimal environment with BusyBox providing basic utilities.
 
 ## Challenges
