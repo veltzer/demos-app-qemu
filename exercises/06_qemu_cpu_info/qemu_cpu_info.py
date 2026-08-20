@@ -5,6 +5,7 @@
 import subprocess
 import textwrap
 
+
 def run_qemu_command(arch, machine=None):
     """Run QEMU command to get CPU information for a specific architecture."""
     base_cmd = ['qemu-system-' + arch, '-cpu', '?']
@@ -82,9 +83,9 @@ def analyze_architecture(arch):
     # Print CPU information with features for selected CPUs
     for cpu in cpus:
         print(f"\nCPU: {cpu['name']}")
-        if 'flags' in cpu and cpu['flags']:
+        if cpu.get('flags'):
             print(f"Flags: {' '.join(cpu['flags'])}")
-        if 'description' in cpu and cpu['description']:
+        if cpu.get('description'):
             print(f"Description: {cpu['description']}")
 
         # Get detailed features for some interesting CPUs
