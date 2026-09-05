@@ -1,11 +1,12 @@
 #!/bin/bash -ex
 
+# shellcheck source=/dev/null
 source defs.sh
 #	-dtb "dt.dtb"\
 
-if [ "$ARCH" = "arm" ]
+if [ "${ARCH}" = "arm" ]
 then
-	qemu-system-${ARCH}\
+	"qemu-system-${ARCH}"\
 		-machine "${QEMU_MACHINE_TYPE}"\
 		-kernel "${KERNEL_IMAGE}"\
 		-nographic\
@@ -14,9 +15,9 @@ then
 		-append "rdinit=/sbin/init"
 #		-audio driver=none,model=hda\
 fi
-if [ "$ARCH" = "x86_64" ]
+if [ "${ARCH}" = "x86_64" ]
 then
-	qemu-system-${ARCH}\
+	"qemu-system-${ARCH}"\
 		-machine "${QEMU_MACHINE_TYPE}"\
 		-kernel "${KERNEL_IMAGE}"\
 		-audio driver=none,model=hda\

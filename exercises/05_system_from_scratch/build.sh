@@ -5,8 +5,6 @@ KERNEL_CONFIG=""
 # shellcheck source=/dev/null
 source "defs.sh"
 
-REAL_ARCH=$(arch)
-
 if [ ! -d build ]
 then
 	mkdir build

@@ -5,8 +5,8 @@
 # References:
 # - https://www.tecmint.com/install-qemu-kvm-ubuntu-create-virtual-machines/
 
-vx=$(egrep -c '(vmx|svm)' /proc/cpuinfo)
-if [ "$vx" -eq 0 ]
+vx=$(grep -Ec '(vmx|svm)' /proc/cpuinfo)
+if [ "${vx}" -eq 0 ]
 then
 	echo "You don't have virtualization enabled"
 	echo "Your cpu does not support virtualization"
