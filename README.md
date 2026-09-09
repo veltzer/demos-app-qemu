@@ -1,11 +1,11 @@
 <!-- This file is generated. Do not edit it by hand: your changes will be
      lost on the next build. Edit the template it is rendered from, or the
      values that template reads, and build again. -->
-# *demos-qemu* project by Mark Veltzer
+# *demos-app-qemu* project by Mark Veltzer
 
 description: Demos showing how to build your own embedded systems with qemu
 
-project website: https://veltzer.github.io/demos-qemu
+project website: https://veltzer.github.io/demos-app-qemu
 
 author: Mark Veltzer
 
@@ -15,11 +15,11 @@ version: 0.0.1
 
 ## github
 
-![License](https://img.shields.io/github/license/veltzer/demos-qemu)
+![License](https://img.shields.io/github/license/veltzer/demos-app-qemu)
 
 ## build
 
-![build](https://github.com/veltzer/demos-qemu/workflows/build/badge.svg)
+![build](https://github.com/veltzer/demos-app-qemu/workflows/build/badge.svg)
 
 ## contact me
 
