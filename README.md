@@ -5,7 +5,7 @@
 
 description: Demos showing how to build your own embedded systems with qemu
 
-project website: https://veltzer.github.io/demos-app-qemu
+project website: <https://veltzer.github.io/demos-app-qemu>
 
 author: Mark Veltzer
 
