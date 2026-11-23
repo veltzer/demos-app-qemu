@@ -6,7 +6,7 @@
 # - https://www.tecmint.com/install-qemu-kvm-ubuntu-create-virtual-machines/
 
 vx=$(grep -Ec '(vmx|svm)' /proc/cpuinfo)
-if [ "${vx}" -eq 0 ]
+if [[ "${vx}" -eq 0 ]]
 then
 	echo "You don't have virtualization enabled"
 	echo "Your cpu does not support virtualization"
@@ -28,7 +28,7 @@ then
 	echo "sudo systemctl start libvirtd"
 	exit 1
 fi
-if ! getent group kvm | grep -q "\b${USER}\b"
+if ! { getent group kvm || true; } | grep -q "\b${USER}\b"
 then
 	echo "you are not a member of the 'kvm' group"
 	echo "try"
@@ -36,7 +36,7 @@ then
 	echo "and re-login..."
 	exit 1
 fi
-if ! getent group libvirt | grep -q "\b${USER}\b"
+if ! { getent group libvirt || true; } | grep -q "\b${USER}\b"
 then
 	echo "you are not a member of the 'libvirt' group"
 	echo "try"

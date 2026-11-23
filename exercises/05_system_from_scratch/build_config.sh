@@ -1,6 +1,6 @@
 #!/bin/bash -e
 cd "build"
-if [ ! -d "linux-6.1.34" ]
+if [[ ! -d "linux-6.1.34" ]]
 then
 	tar xvf "linux-6.1.34.tar.xz"
 fi

@@ -9,7 +9,7 @@ source defs.sh
 : "${INITRD_FULL_PATH:?INITRD_FULL_PATH must be set}"
 #	-dtb "dt.dtb"\
 
-if [ "${ARCH}" = "arm" ]
+if [[ "${ARCH}" = "arm" ]]
 then
 	"qemu-system-${ARCH}"\
 		-machine "${QEMU_MACHINE_TYPE}"\
@@ -20,7 +20,7 @@ then
 		-append "rdinit=/sbin/init"
 #		-audio driver=none,model=hda\
 fi
-if [ "${ARCH}" = "x86_64" ]
+if [[ "${ARCH}" = "x86_64" ]]
 then
 	"qemu-system-${ARCH}"\
 		-machine "${QEMU_MACHINE_TYPE}"\

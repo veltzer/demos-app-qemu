@@ -18,27 +18,27 @@ source "defs.sh"
 : "${BUSYBOX_CONFIG:?BUSYBOX_CONFIG must be set}"
 : "${INITRD:?INITRD must be set}"
 
-if [ ! -d build ]
+if [[ ! -d build ]]
 then
 	mkdir build
 fi
 cd build
-if [ ! -f "${KERNEL_FILE}" ]
+if [[ ! -f "${KERNEL_FILE}" ]]
 then
 	wget "${KERNEL_DOWNLOAD}"
 fi
 
-if [ ! -d "${KERNEL_BUILD_FOLDER}" ]
+if [[ ! -d "${KERNEL_BUILD_FOLDER}" ]]
 then
 	mkdir "${KERNEL_BUILD_FOLDER}"
 	tar xvf "${KERNEL_FILE}" -C "${KERNEL_BUILD_FOLDER}" --strip-components=1
 fi
 
 cd "${KERNEL_BUILD_FOLDER}"
-if [ ! -f "stamp" ]
+if [[ ! -f "stamp" ]]
 then
 	kernel_config="../../kernel_config.${ARCH}.${KERNEL_VERSION}.${KERNEL_CONFIG}"
-	if [ ! -f "${kernel_config}" ]
+	if [[ ! -f "${kernel_config}" ]]
 	then
 		echo "You are missing the kernel config file ${kernel_config}"
 		exit 1
@@ -49,18 +49,18 @@ then
 fi
 cd ..
 
-if [ ! -f "${BUSYBOX_FILE}" ]
+if [[ ! -f "${BUSYBOX_FILE}" ]]
 then
 	wget "${BUSYBOX_DOWNLOAD}"
 fi
 
-if [ ! -d "${BUSYBOX_FOLDER}" ]
+if [[ ! -d "${BUSYBOX_FOLDER}" ]]
 then
 	tar xvf "${BUSYBOX_FILE}"
 	mv "${BUSYBOX_TAR_TOPLEVEL}" "${BUSYBOX_FOLDER}"
 fi
 cd "${BUSYBOX_FOLDER}"
-if [ ! -f "stamp" ]
+if [[ ! -f "stamp" ]]
 then
 	cp "../../busybox_config.${ARCH}.${BUSYBOX_VERSION}.${BUSYBOX_CONFIG}" ".config"
 	make ARCH="${ARCH}" CROSS_COMPILE="${CROSS_COMPILE}"
@@ -68,12 +68,12 @@ then
 	touch stamp
 fi
 
-if [ ! -f "${INITRD}" ]
+if [[ ! -f "${INITRD}" ]]
 then
 	cd _install
 	mkdir -pv {proc,sys,dev,bin,sbin,usr}
 	cp ../../../init_scripts/init /sbin/init
-	find . -print0 | cpio --owner root:root --null --verbose --create --format=newc | gzip -9 > "../${INITRD}"
+	{ find . -print0 | cpio --owner root:root --null --verbose --create --format=newc || true; } | gzip -9 > "../${INITRD}"
 
 fi
 cd ..
