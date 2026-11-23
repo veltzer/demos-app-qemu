@@ -2,6 +2,11 @@
 
 # shellcheck source=/dev/null
 source defs.sh
+: "${ARCH:?ARCH must be set}"
+: "${QEMU_MACHINE_TYPE:?QEMU_MACHINE_TYPE must be set}"
+: "${KERNEL_IMAGE:?KERNEL_IMAGE must be set}"
+: "${KERNEL_BUILD_FOLDER:?KERNEL_BUILD_FOLDER must be set}"
+: "${INITRD_FULL_PATH:?INITRD_FULL_PATH must be set}"
 #	-dtb "dt.dtb"\
 
 if [ "${ARCH}" = "arm" ]

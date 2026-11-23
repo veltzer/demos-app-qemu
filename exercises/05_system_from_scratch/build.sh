@@ -4,6 +4,19 @@ KERNEL_CONFIG=""
 
 # shellcheck source=/dev/null
 source "defs.sh"
+: "${KERNEL_FILE:?KERNEL_FILE must be set}"
+: "${KERNEL_DOWNLOAD:?KERNEL_DOWNLOAD must be set}"
+: "${KERNEL_BUILD_FOLDER:?KERNEL_BUILD_FOLDER must be set}"
+: "${ARCH:?ARCH must be set}"
+: "${KERNEL_VERSION:?KERNEL_VERSION must be set}"
+: "${CROSS_COMPILE:?CROSS_COMPILE must be set}"
+: "${BUSYBOX_FILE:?BUSYBOX_FILE must be set}"
+: "${BUSYBOX_DOWNLOAD:?BUSYBOX_DOWNLOAD must be set}"
+: "${BUSYBOX_FOLDER:?BUSYBOX_FOLDER must be set}"
+: "${BUSYBOX_TAR_TOPLEVEL:?BUSYBOX_TAR_TOPLEVEL must be set}"
+: "${BUSYBOX_VERSION:?BUSYBOX_VERSION must be set}"
+: "${BUSYBOX_CONFIG:?BUSYBOX_CONFIG must be set}"
+: "${INITRD:?INITRD must be set}"
 
 if [ ! -d build ]
 then
