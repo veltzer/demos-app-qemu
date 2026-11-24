@@ -63,11 +63,12 @@ args = ["--offline", "--no-progress", "--persona=pedantic"]
 
 # ─── c / c++ ─────────────────────────────────────────────────────────────────
 
+# One program per file here (a single main.c): the default one-run-per-file mode fits.
 [processor.checker.cppcheck]
 src_dirs = ["scratch/arm_machines_investigation"]
 args = [
 	"--error-exitcode=1",
-	"--enable=warning,style,performance,portability",
+	"--enable=warning,style,performance,portability,information,unusedFunction",
 	"--check-level=exhaustive",
 	"--inline-suppr",
 ]
