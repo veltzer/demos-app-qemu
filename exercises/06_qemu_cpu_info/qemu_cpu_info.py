@@ -40,7 +40,7 @@ def get_machines(arch):
 
 def parse_cpu_list(output):
     """Parse QEMU CPU list output into structured data."""
-    cpus = []
+    cpus: list[dict[str, str | list[str]]] = []
     if not output:
         return cpus
 
