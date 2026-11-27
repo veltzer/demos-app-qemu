@@ -6,7 +6,7 @@ import subprocess
 import textwrap
 
 
-def run_qemu_command(arch, machine=None):
+def run_qemu_command(arch: str, machine: str | None = None) -> str | None:
     """Run QEMU command to get CPU information for a specific architecture."""
     base_cmd = ['qemu-system-' + arch, '-cpu', '?']
     if machine:
@@ -20,7 +20,7 @@ def run_qemu_command(arch, machine=None):
     except FileNotFoundError:
         return None
 
-def get_cpu_features(arch, cpu_type):
+def get_cpu_features(arch: str, cpu_type: str) -> str | None:
     """Get detailed CPU features for a specific CPU type."""
     cmd = ['qemu-system-' + arch, '-cpu', cpu_type + ',?']
     try:
@@ -29,7 +29,7 @@ def get_cpu_features(arch, cpu_type):
     except FileNotFoundError:
         return None
 
-def get_machines(arch):
+def get_machines(arch: str) -> str | None:
     """Get list of supported machines for an architecture."""
     try:
         result = subprocess.run(['qemu-system-' + arch, '-machine', '?'],
@@ -38,7 +38,7 @@ def get_machines(arch):
     except FileNotFoundError:
         return None
 
-def parse_cpu_list(output):
+def parse_cpu_list(output: str):
     """Parse QEMU CPU list output into structured data."""
     cpus: list[dict[str, str | list[str]]] = []
     if not output:
@@ -64,7 +64,7 @@ def parse_cpu_list(output):
                 })
     return cpus
 
-def analyze_architecture(arch):
+def analyze_architecture(arch: str) -> None:
     """Analyze and collect information about a specific architecture."""
     print(f"\n{'='*80}")
     print(f"Architecture: {arch}")
@@ -111,7 +111,7 @@ def analyze_architecture(arch):
             if line.strip() and not line.startswith('Supported machines'):
                 print(line)
 
-def main():
+def main() -> None:
     """Main function to analyze multiple architectures."""
     architectures = ['x86_64', 'aarch64']
 
